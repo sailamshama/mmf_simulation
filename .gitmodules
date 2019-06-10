@@ -1,3 +1,7 @@
 [submodule "GMMNLSE-Solver-FINAL"]
 	path = GMMNLSE-Solver-FINAL
 	url = https://github.com/WiseLabAEP/GMMNLSE-Solver-FINAL
+[submodule "mmf_raytrace"]
+	path = mmf_raytrace
+	url = https://github.com/jumpingjack927/mmf_raytrace
+	branch = master
