@@ -4,7 +4,6 @@ import multiprocessing as multip
 
 pos = [0, 0, 0]
 
-
 # principle of operation
 # implementation
 # application
@@ -342,8 +341,6 @@ if __name__ == '__main__':
 
     heatmap, xedges, yedges = np.histogram2d(f_pos[:, 0], f_pos[:, 1], bins=75)
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
-
-    # TODO: save just image in FOV
 
     # plt.imsave(heatmap.T, "image.tiff")
     plt.imshow(heatmap.T, extent=extent, origin='lower')
