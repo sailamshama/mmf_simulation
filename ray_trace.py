@@ -17,7 +17,6 @@ class mmf_fibre:
     b = 1 * r  # y axis radius
     length = 8000e-6
 
-
 def norm(vec):
     if np.sqrt(np.sum(vec ** 2)) == 0:
         return np.array([0, 0])
@@ -126,7 +125,7 @@ def generate_rays_mc(init_pos, fibre=mmf_fibre, num_rays=100 ** 2):
     mesh = np.array([[0, 0, 0]])
     origin = init_pos[:2]
 
-    # lcuky rolls to generate random distribution with linear profile
+    # lucky rolls to generate random distribution with linear profile
     # x1 = r0*np.random.rand(num_rays)
     # x2 = r0*np.random.rand(num_rays)
     # x1mask = (x1>x2).astype(int)

@@ -2,20 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch.multiprocessing as mp
 
-# NA = PApplet.parseFloat(readInputLine());
-# len = PApplet.parseFloat(readInputLine());
-# beadX = PApplet.parseFloat(readInputLine());
-# beadY = PApplet.parseFloat(readInputLine());
-# beadRad = PApplet.parseFloat(readInputLine());
-# rayMax = PApplet.parseInt(readInputLine());
-# pixType = PApplet.parseInt(readInputLine());
-# major = PApplet.parseFloat(readInputLine());
-# minor = PApplet.parseFloat(readInputLine());
-# save director
+
+def generate_rays():
 
 
-
-
+def get_intersection():
 
 
 if __name__ == "__main__":
@@ -28,5 +19,7 @@ if __name__ == "__main__":
     MAJOR = input("Enter elliptal mmf's core's semimajor axis (in mm): " ) or 100
     MINOR = input("Enter elliptal mmf's core's semiminor axis (in mm): " ) or 100
     SAVEDIR = input("Enter directory to save simulated PSFs: ") or './tmp/'
+    CORE_REF_INDEX = input("Enter refractive index of mmf code: ") or 1.467287f
+
 
 

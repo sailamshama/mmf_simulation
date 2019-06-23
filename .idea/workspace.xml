@@ -2,13 +2,167 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6ee9429-04c5-4f9d-8e04-34e65029d809" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mmf_ray_trace.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/simulation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/simulation.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/.idea/application.macosx_v3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/.idea/ellipseCannulaModelCoreV3.app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/Java/core.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/Java/ellipseCannulaModelCoreV3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/Java/gluegen-rt-natives-macosx-universal.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/Java/jogl-all-natives-macosx-universal.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/Java/jogl-all.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/MacOS/ellipseCannulaModelCoreV3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/COPYRIGHT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/Welcome.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/bin/java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/bin/keytool" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/calendars.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/charsets.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/classlist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/cmm/CIEXYZ.pf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/cmm/GRAY.pf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/cmm/LINEAR_RGB.pf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/cmm/PYCC.pf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/content-types.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/currency.data" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/cldrdata.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/dnsns.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/jaccess.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/jfxrt.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/meta-index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/nashorn.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/sunec.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/flavormap.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fontconfig.bfc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fontconfig.properties.src" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/AnonymousPro-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/AnonymousPro-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/Carlito-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/Carlito-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/Carlito-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/LucidaBrightDemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/LucidaBrightDemiItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/LucidaBrightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/LucidaBrightRegular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/LucidaSansDemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/LucidaTypewriterBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/LucidaTypewriterRegular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/SourceCodePro-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/SourceCodePro-LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/SourceCodePro-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/SourceSansPro-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/SourceSansPro-Semibold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/fonts/fonts.dir" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/hijrah-config-umalqura.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/images/cursors/cursors.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/images/cursors/invalid32x32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/images/cursors/motif_CopyDrop32x32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/images/cursors/motif_CopyNoDrop32x32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/images/cursors/motif_LinkDrop32x32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/images/cursors/motif_LinkNoDrop32x32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/images/cursors/motif_MoveDrop32x32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/javafx.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jce.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jfr.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jfr/default.jfc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jfr/profile.jfc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jfxswt.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jli/libjli.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jspawnhelper" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jsse.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/jvm.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libAppleScriptEngine.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libattach.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libawt.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libawt_lwawt.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libbci.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libdcpr.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libdt_socket.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libfontmanager.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libfxplugins.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libglass.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libglib-lite.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libgstreamer-lite.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libinstrument.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libj2gss.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libj2pkcs11.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjaas_unix.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjava.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjava_crw_demo.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjavafx_font.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjavafx_iio.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjawt.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjdwp.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjfxmedia.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjfxmedia_avf.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjfxmedia_qtkit.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjfxwebkit.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjpeg.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libjsig.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libkcms.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/liblcms.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libmanagement.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libnio.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libnpt.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libosx.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libosxui.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libprism_common.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libprism_es2.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libprism_sw.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libresource.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libsaproc.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libsplashscreen.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libsunec.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libt2k.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libunpack.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libverify.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/libzip.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/logging.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/management-agent.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/management/jmxremote.access" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/management/jmxremote.password.template" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/management/management.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/management/snmp.acl.template" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/meta-index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/net.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/psfont.properties.ja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/psfontj2d.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/rt.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/security/US_export_policy.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/security/blacklist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/security/blacklisted.certs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/security/cacerts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/security/java.policy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/security/java.security" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/security/local_policy.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/server/Xusage.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/server/libjvm.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/sound.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Home/jre/lib/tzdb.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/MacOS/libjli.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/PlugIns/jdk1.8.0_74.jdk/Contents/_CodeSignature/CodeResources" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/Resources/en.lproj/Localizable.strings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/ellipseCannulaModelCoreV3.app/Contents/Resources/sketch.icns" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/inputText.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3/ellipseCannulaModelCoreV3.pde" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3/inputText copy.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3/inputText.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3/simulationOutput.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GMMNLSE-Solver-FINAL" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmf_raytrace" beforeDir="false" afterPath="$PROJECT_DIR$/mmf_raytrace" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mmf_raytrace/ray_trace.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmf_ray_trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/mmf_ray_trace.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mmf_raytrace" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ray_trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/ray_trace.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,11 +187,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ray_trace.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="29" column="38" lean-forward="true" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+            <state relative-caret-position="215">
+              <caret line="122" column="45" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -45,11 +199,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mmf_ray_trace.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="360">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -72,11 +226,15 @@
       <find>post</find>
       <find>pos</find>
     </findStrings>
+    <replaceStrings>
+      <replace>input</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="Saila &lt;saila.sms96@gmail.com&gt;" />
+        <option value="Saila" />
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -231,7 +389,7 @@
       <workItem from="1560200330031" duration="20450000" />
       <workItem from="1560708369437" duration="931000" />
       <workItem from="1560872938628" duration="3146000" />
-      <workItem from="1561141296969" duration="7919000" />
+      <workItem from="1561141296969" duration="12977000" />
     </task>
     <task id="LOCAL-00001" summary="Clean up formatting.">
       <created>1560875458109</created>
@@ -240,11 +398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1560875458109</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Created inputs">
+      <created>1561176716812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1561176716812</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32446000" />
+    <option name="totallyTimeSpent" value="37504000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -259,14 +424,14 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21030043" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20171674" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.32891566" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.37228915" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3079646" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" visible="true" weight="0.40120482" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" weight="0.40120482" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
@@ -274,7 +439,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50214595" side_tool="true" weight="0.23493975" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946752" weight="0.32771084" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946752" weight="0.37349397" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49785408" weight="0.36024097" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -293,19 +458,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Clean up formatting." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up formatting." />
+    <MESSAGE value="Input" />
+    <MESSAGE value="Created inputs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created inputs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ray_trace.py</url>
-          <line>335</line>
+          <line>334</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ray_trace.py</url>
-          <line>326</line>
+          <line>325</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
@@ -313,7 +480,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/simulation$ray_trace.coverage" NAME="ray_trace Coverage Results" MODIFIED="1560874892962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/simulation$mmf_ray_trace.coverage" NAME="mmf_ray_trace Coverage Results" MODIFIED="1561176493859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/simulation$mmf_ray_trace.coverage" NAME="mmf_ray_trace Coverage Results" MODIFIED="1561176886551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py3/lib/python3.6/multiprocessing/connection.py">
@@ -391,20 +558,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ray_trace.py">
+    <entry file="file://$PROJECT_DIR$/mmf_ray_trace.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="29" column="38" lean-forward="true" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+        <state relative-caret-position="360">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mmf_ray_trace.py">
+    <entry file="file://$PROJECT_DIR$/ray_trace.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="215">
+          <caret line="122" column="45" selection-start-line="122" selection-start-column="45" selection-end-line="122" selection-end-column="45" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
