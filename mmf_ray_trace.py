@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import torch.multiprocessing as mp
 
 
+
 def generate_rays():
 
 
