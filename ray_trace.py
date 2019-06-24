@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing as multip
 
-pos = [0, 0, 0]
+# pos = [0, 0, 0]
 
 # principle of operation
 # implementation
@@ -12,7 +12,8 @@ pos = [0, 0, 0]
 class mmf_fibre:
     NA = 0.39
     n = 1.4630  # 488nm RI.info
-    r = 100e-6
+    # r = 100e-6
+    r = 100
     a = 0.996 * r  # x axis radius
     b = 1 * r  # y axis radius
     length = 8000e-6
@@ -22,7 +23,6 @@ def norm(vec):
         return np.array([0, 0])
     return vec / np.sqrt(np.sum(vec ** 2))
 
-
 def partition(arr_like, size):
     assert type(size) == int
     temp_list = [[] in range(len(arr_like) / size + 1)]
@@ -30,15 +30,12 @@ def partition(arr_like, size):
         temp_list[i / size].append(val)
     return temp_list
 
-
 def norm_rays(rays):
     return rays / np.sqrt(np.tile(np.sum(rays ** 2, axis=1), [1, 1]).transpose())
-
 
 def visualize_vec(vec):
     plt.plot([0, vec[0]], [0, vec[1]])
     plt.show()
-
 
 def in_fibre(pos, fibre=mmf_fibre):
     a = fibre.a
@@ -53,8 +50,7 @@ def in_fibre(pos, fibre=mmf_fibre):
     # print r
     return r < r_ellip
 
-
-def generate_rays(init_pos, fibre=mmf_fibre, mesh_density=50, num_rays=1000 ** 2):
+def generate_rays(init_pos, fibre=mmf_fibre, mesh_density = 50, num_rays = 1000 ** 2):
     # num_rays ~ 6*mesh density**2
     # mesh density cap = 1000, ~6 million rays
     density_cap = 1000
@@ -66,6 +62,7 @@ def generate_rays(init_pos, fibre=mmf_fibre, mesh_density=50, num_rays=1000 ** 2
     r_space = r[0] - r[1]
     mesh = np.array([[0, 0, 0]])
     origin = init_pos[:2]
+
     for i in r:
         theta = np.linspace(0, 2 * np.pi, int(12 * mesh_density * i / r0), endpoint=False)
         t_space = theta[1] - theta[0]
@@ -77,9 +74,11 @@ def generate_rays(init_pos, fibre=mmf_fibre, mesh_density=50, num_rays=1000 ** 2
         ymesh = origin[1] + rmesh.flat * np.sin(thetamesh.flat)
         zmesh = np.zeros(xmesh.shape)
         mesh = np.append(mesh, np.stack([xmesh, ymesh, zmesh], axis=1), axis=0)
+
     mesh = mesh[1:]
     in_fibre_mask = in_fibre(mesh[:, :2], mmf_fibre)
     n_iter1 = np.sum(in_fibre_mask)
+
     if n_iter1 > 0:
         refined_density = (float(num_rays) / n_iter1) ** 0.5 * mesh_density
 
@@ -89,6 +88,7 @@ def generate_rays(init_pos, fibre=mmf_fibre, mesh_density=50, num_rays=1000 ** 2
         r_space = r[0] - r[1]
         mesh = np.array([[0, 0, 0]])
         origin = init_pos[:2]
+
         for i in r:
             theta = np.linspace(0, 2 * np.pi, int(12 * refined_density * i / r0), endpoint=False)
             t_space = theta[1] - theta[0]
@@ -110,11 +110,9 @@ def generate_rays(init_pos, fibre=mmf_fibre, mesh_density=50, num_rays=1000 ** 2
     # refraction
     # n0 = 1.
     # vec[:,2] = vec[:,2]*fibre.n/n0
-
     vec = norm_rays(vec)
 
     return mesh, vec
-
 
 def generate_rays_mc(init_pos, fibre=mmf_fibre, num_rays=100 ** 2):
     num_ray_cap = 6e6
@@ -205,6 +203,7 @@ def guided_rays(rays, fibre=mmf_fibre):
 
 
 def chord(pos, ray, fibre=mmf_fibre, trace=False):
+
     if np.isnan(ray).all():
         return 100., pos, np.array([0, 0])
     a = fibre.a
@@ -258,7 +257,6 @@ def propagate_ray(ray, ray_pos, final_pos, index_num, fibre=mmf_fibre):
     final_pos[index_num] = fp
     return
 
-
 def propagate(rays, ray_pos, share_dict, index_num, fibre=mmf_fibre, trace=False):
     global num_threads
     theta = xyz_transform_theta(rays)
@@ -291,6 +289,8 @@ def propagate(rays, ray_pos, share_dict, index_num, fibre=mmf_fibre, trace=False
     # while pos[2]<fibre.length:
 
 
+#TODO: understand this
+
 def propagate_multithread(rays, ray_pos, fibre=mmf_fibre, trace=False):
     global num_threads
     theta = xyz_transform_theta(rays)
@@ -314,6 +314,7 @@ def propagate_multithread(rays, ray_pos, fibre=mmf_fibre, trace=False):
 
 
 def plot_ellipse(a, b):
+
     theta = np.linspace(0, 2 * np.pi, 1001)
     r = a * b / (np.sqrt((b * np.cos(theta)) ** 2 + (a * np.sin(theta)) ** 2))
     x = r * np.cos(theta)
@@ -322,17 +323,17 @@ def plot_ellipse(a, b):
 
 
 if __name__ == '__main__':
-    num_threads = 6
-
+    num_threads = 10
     # MC - monte carlo generation (fully random)
     #    - has adaptive sizing for approximately same number of rays despite incomplete overlap 
 
     # xyz,rays = generate_rays_mc([50e-6,50e-6,-0.0001e-6],num_rays=962301)
 
     # normal - psudorandom generation
-    #    - has adaptive sizing for approximately same number of rays despite incomplete overlap 
+    #    - has adaptive sizing for approximately same number of rays despite incomplete overlap
 
-    xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays=100000)
+
+    xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays = 1000000)
 
     print 'number of rays: ' + str(len(xyz))
 
@@ -341,6 +342,6 @@ if __name__ == '__main__':
     heatmap, xedges, yedges = np.histogram2d(f_pos[:, 0], f_pos[:, 1], bins=75)
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
-    # plt.imsave(heatmap.T, "image.tiff")
-    plt.imshow(heatmap.T, extent=extent, origin='lower')
-    plt.show()
+    # plt.imshow(heatmap.T, extent=extent, origin='lower')
+    # plt.show()
+    plt.imsave('./simulated_calibration/img.tiff', heatmap)
