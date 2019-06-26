@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import multiprocessing as multip
 
+
 # pos = [0, 0, 0]
 
 # principle of operation
@@ -18,10 +19,12 @@ class mmf_fibre:
     b = 1 * r  # y axis radius
     length = 8000e-6
 
+
 def norm(vec):
     if np.sqrt(np.sum(vec ** 2)) == 0:
         return np.array([0, 0])
     return vec / np.sqrt(np.sum(vec ** 2))
+
 
 def partition(arr_like, size):
     assert type(size) == int
@@ -30,12 +33,15 @@ def partition(arr_like, size):
         temp_list[i / size].append(val)
     return temp_list
 
+
 def norm_rays(rays):
     return rays / np.sqrt(np.tile(np.sum(rays ** 2, axis=1), [1, 1]).transpose())
+
 
 def visualize_vec(vec):
     plt.plot([0, vec[0]], [0, vec[1]])
     plt.show()
+
 
 def in_fibre(pos, fibre=mmf_fibre):
     a = fibre.a
@@ -50,7 +56,8 @@ def in_fibre(pos, fibre=mmf_fibre):
     # print r
     return r < r_ellip
 
-def generate_rays(init_pos, fibre=mmf_fibre, mesh_density = 50, num_rays = 1000 ** 2):
+
+def generate_rays(init_pos, fibre=mmf_fibre, mesh_density=50, num_rays=1000 ** 2):
     # num_rays ~ 6*mesh density**2
     # mesh density cap = 1000, ~6 million rays
     density_cap = 1000
@@ -113,6 +120,7 @@ def generate_rays(init_pos, fibre=mmf_fibre, mesh_density = 50, num_rays = 1000 
     vec = norm_rays(vec)
 
     return mesh, vec
+
 
 def generate_rays_mc(init_pos, fibre=mmf_fibre, num_rays=100 ** 2):
     num_ray_cap = 6e6
@@ -203,7 +211,6 @@ def guided_rays(rays, fibre=mmf_fibre):
 
 
 def chord(pos, ray, fibre=mmf_fibre, trace=False):
-
     if np.isnan(ray).all():
         return 100., pos, np.array([0, 0])
     a = fibre.a
@@ -257,6 +264,7 @@ def propagate_ray(ray, ray_pos, final_pos, index_num, fibre=mmf_fibre):
     final_pos[index_num] = fp
     return
 
+
 def propagate(rays, ray_pos, share_dict, index_num, fibre=mmf_fibre, trace=False):
     global num_threads
     theta = xyz_transform_theta(rays)
@@ -289,7 +297,7 @@ def propagate(rays, ray_pos, share_dict, index_num, fibre=mmf_fibre, trace=False
     # while pos[2]<fibre.length:
 
 
-#TODO: understand this
+# TODO: understand this
 
 def propagate_multithread(rays, ray_pos, fibre=mmf_fibre, trace=False):
     global num_threads
@@ -314,7 +322,6 @@ def propagate_multithread(rays, ray_pos, fibre=mmf_fibre, trace=False):
 
 
 def plot_ellipse(a, b):
-
     theta = np.linspace(0, 2 * np.pi, 1001)
     r = a * b / (np.sqrt((b * np.cos(theta)) ** 2 + (a * np.sin(theta)) ** 2))
     x = r * np.cos(theta)
@@ -323,7 +330,8 @@ def plot_ellipse(a, b):
 
 
 if __name__ == '__main__':
-    num_threads = 10
+    num_threads = 4 # TODO: how to choose
+
     # MC - monte carlo generation (fully random)
     #    - has adaptive sizing for approximately same number of rays despite incomplete overlap 
 
@@ -332,8 +340,7 @@ if __name__ == '__main__':
     # normal - psudorandom generation
     #    - has adaptive sizing for approximately same number of rays despite incomplete overlap
 
-
-    xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays = 1000000)
+    xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays=1000000)
 
     print 'number of rays: ' + str(len(xyz))
 
