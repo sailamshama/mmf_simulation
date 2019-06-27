@@ -1,6 +1,7 @@
 .DS_Store
 
 mmf_ray_trace.py
+mmf_simulation_venv/
 
 .idea/
 application.macosx_v3/
