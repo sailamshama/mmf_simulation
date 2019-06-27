@@ -1,14 +1,5 @@
 import numpy as np
 
-class Fiber:
-    def __init__(self, NA = 0.37, n = 1.4630, r = 200):
-        self.NA = 0.39
-        self.n = 1.4630  # 488nm RI.info
-        self.r = 200 # 2 um
-        self.a = 0.996 * r  # x axis radius
-        self.b = 1 * r  # y axis radius
-        self.length = 4000 #
-
 
 def get_wall_vec(fiber, x, y):
     a = fiber.a

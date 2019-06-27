@@ -7,7 +7,7 @@ from helpers import *
 class mmf_fiber:
     NA = 0.39
     n = 1.4630  # 488nm RI.info
-    r = 200 # 2 um
+    r = 100 # 2 um
     a = 0.996 * r  # x axis radius
     b = 1 * r  # y axis radius
     length = 4000 #
@@ -192,13 +192,10 @@ def propagate_multithread(rays, ray_pos, fiber=mmf_fiber, trace=False):
 if __name__ == '__main__':
 
     num_processes = multip.cpu_count()
-
-    xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays = 100)
-
+    xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays = 1000)
     # print('number of rays: ' + str(len(xyz)));
 
     f_pos = propagate_multithread(rays, xyz[:, :2])
-
     heatmap, xedges, yedges = np.histogram2d(f_pos[:, 0], f_pos[:, 1], bins=75)
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
