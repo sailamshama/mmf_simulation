@@ -342,7 +342,7 @@ if __name__ == '__main__':
 
     xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays=1000000)
 
-    print 'number of rays: ' + str(len(xyz))
+    # print('number of rays: ' + str(len(xyz)));
 
     f_pos = propagate_multithread(rays, xyz[:, :2])
 
