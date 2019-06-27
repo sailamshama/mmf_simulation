@@ -266,7 +266,7 @@ def propagate_ray(ray, ray_pos, final_pos, index_num, fibre=mmf_fibre):
 
 
 def propagate(rays, ray_pos, share_dict, index_num, fibre=mmf_fibre, trace=False):
-    global num_threads
+    global num_processes
     theta = xyz_transform_theta(rays)
     final_pos = np.zeros(ray_pos.shape)
     if trace:
@@ -300,13 +300,13 @@ def propagate(rays, ray_pos, share_dict, index_num, fibre=mmf_fibre, trace=False
 # TODO: understand this
 
 def propagate_multithread(rays, ray_pos, fibre=mmf_fibre, trace=False):
-    global num_threads
+    global num_processes
     theta = xyz_transform_theta(rays)
     final_pos = np.zeros(ray_pos.shape)
 
-    rays_part = np.array_split(rays, num_threads)
-    ray_pos_part = np.array_split(ray_pos, num_threads)
-    index_part = np.array_split(range(len(rays)), num_threads)
+    rays_part = np.array_split(rays, num_processes)
+    ray_pos_part = np.array_split(ray_pos, num_processes)
+    index_part = np.array_split(range(len(rays)), num_processes)
     manager = multip.Manager()
     f_pos = manager.dict()
 
@@ -328,9 +328,8 @@ def plot_ellipse(a, b):
     y = r * np.sin(theta)
     plt.plot(x, y)
 
-
 if __name__ == '__main__':
-    num_threads = 4 # TODO: how to choose
+    num_processes = 6
 
     # MC - monte carlo generation (fully random)
     #    - has adaptive sizing for approximately same number of rays despite incomplete overlap 
@@ -340,7 +339,8 @@ if __name__ == '__main__':
     # normal - psudorandom generation
     #    - has adaptive sizing for approximately same number of rays despite incomplete overlap
 
-    xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays=1000000)
+    # [50e-6, 0e-6, -0.0001e-6]
+    xyz, rays = generate_rays([50e-5, 0e-6, -0.0001e-6], num_rays=5000)
 
     # print('number of rays: ' + str(len(xyz)));
 

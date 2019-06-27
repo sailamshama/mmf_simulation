@@ -28,7 +28,24 @@
     <select />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ray_trace.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="351" selection-start-line="351" selection-end-line="351" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,10 +62,15 @@
       <find>pos</find>
       <find>guided_rays</find>
       <find>ce</find>
+<<<<<<< HEAD
       <find>print</find>
+=======
+      <find>num_threads</find>
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
     </findStrings>
     <replaceStrings>
       <replace>input</replace>
+      <replace>num_processes</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -68,9 +90,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="714" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="46" />
+    <option name="width" value="1940" />
+    <option name="height" value="1082" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -78,23 +102,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="simulation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="simulation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="simulation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="simulation" type="462c0819:PsiDirectoryNode" />
-              <item name="simulated_calibration" type="462c0819:PsiDirectoryNode" />
+              <item name="mmf_simulation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mmf_simulation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -210,8 +229,12 @@
       <workItem from="1560200330031" duration="20450000" />
       <workItem from="1560708369437" duration="931000" />
       <workItem from="1560872938628" duration="3146000" />
+<<<<<<< HEAD
       <workItem from="1561141296969" duration="34298000" />
       <workItem from="1561595791098" duration="1894000" />
+=======
+      <workItem from="1561141296969" duration="29684000" />
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
     </task>
     <task id="LOCAL-00001" summary="Clean up formatting.">
       <created>1560875458109</created>
@@ -227,11 +250,22 @@
       <option name="project" value="LOCAL" />
       <updated>1561176716812</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Merge branch 'master' of https://github.com/sailamshama/mmf_simulation&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1561594839655</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1561594839655</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="60719000" />
+=======
+    <option name="totallyTimeSpent" value="54211000" />
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -243,25 +277,42 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17447495" />
+=======
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.14458464" />
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.32891566" />
       <window_info anchor="bottom" id="Message" order="1" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Find" order="2" weight="0.26024097" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.23012048" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49946752" weight="0.33972603" />
+=======
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23012048" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" visible="true" weight="0.26777777" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.26024097" />
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.32891566" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
+      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50214595" side_tool="true" weight="0.23493975" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49946752" weight="0.48767123" />
       <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49785408" weight="0.28082192" />
+=======
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49946752" weight="0.1845238" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49785408" weight="0.12555556" />
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -310,7 +361,8 @@
     <MESSAGE value="Clean up formatting." />
     <MESSAGE value="Input" />
     <MESSAGE value="Created inputs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created inputs" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/sailamshama/mmf_simulation&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/sailamshama/mmf_simulation&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -319,11 +371,14 @@
           <url>file://$PROJECT_DIR$/ray_trace.py</url>
           <line>342</line>
           <option name="timeStamp" value="14" />
+<<<<<<< HEAD
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/ray_trace.py</url>
           <line>346</line>
           <option name="timeStamp" value="15" />
+=======
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -333,27 +388,12 @@
     <SUITE FILE_PATH="coverage/simulation$ray_trace.coverage" NAME="ray_trace Coverage Results" MODIFIED="1561597772707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py3/lib/python3.6/multiprocessing/connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="613" selection-start-line="613" selection-end-line="613" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/matplotlib/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="595" selection-start-line="595" selection-end-line="595" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/twodim_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="526" column="4" selection-start-line="526" selection-start-column="4" selection-end-line="526" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py3/lib/python3.6/multiprocessing/connection.py" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/connection.py" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/managers.py" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/socket.py" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/matplotlib/image.py" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/twodim_base.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -363,6 +403,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mmf_raytrace/ray_trace.py" />
     <entry file="file://$PROJECT_DIR$/mmf_raytrace/test.txt" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3663">
@@ -438,12 +479,27 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/IPython/core/interactiveshell.py">
+=======
+    <entry file="file://$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3.java" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/core/shape_base.py" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/function_base.py" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/core/function_base.py" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/process.py" />
+    <entry file="file://$PROJECT_DIR$/img.tiff" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/shape_base.py" />
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mmf_ray_trace.py" />
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="2881" selection-start-line="2881" selection-end-line="2881" />
+        <state relative-caret-position="289">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ray_trace.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -455,16 +511,24 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/process.py">
+=======
+    <entry file="file://C:/Python37/Lib/site-packages/matplotlib/backend_bases.py">
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="257" selection-start-line="257" selection-end-line="257" />
+        <state relative-caret-position="594">
+          <caret line="2026" column="40" selection-start-line="2026" selection-start-column="40" selection-end-line="2026" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mmf_ray_trace.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="30">
           <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+=======
+        <state relative-caret-position="475">
+          <caret line="351" selection-start-line="351" selection-end-line="351" />
+>>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
