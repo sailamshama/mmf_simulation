@@ -1,7 +1,6 @@
 import numpy as np
 
 class Fiber:
-
     def __init__(self, NA = 0.37, n = 1.4630, r = 200):
         self.NA = 0.39
         self.n = 1.4630  # 488nm RI.info

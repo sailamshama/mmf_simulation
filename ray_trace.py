@@ -191,7 +191,6 @@ def propagate_multithread(rays, ray_pos, fiber=mmf_fiber, trace=False):
 
 if __name__ == '__main__':
 
-    mmf_fiber = Fiber()
     num_processes = multip.cpu_count()
 
     xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays = 100)
