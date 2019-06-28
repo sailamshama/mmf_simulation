@@ -3,20 +3,20 @@ import matplotlib.pyplot as plt
 import multiprocessing as multip
 from helpers import *
 
-
 class mmf_fiber:
     NA = 0.39
-    n = 1.4630  # 488nm RI.info
-    r = 100 # 2 um
-    a = 0.996 * r  # x axis radius
-    b = 1 * r  # y axis radius
-    length = 4000 #
+    n = 1.4630  #488nm RI.info
+    r = 100e-6
+    a = 0.996 * r  # x-axis radius
+    b = 1 * r  # y-axis radius
+    length = 8000e-6
 
-def generate_rays(init_pos, fiber=mmf_fiber, mesh_density=50, num_rays=1000 ** 2):
+def generate_rays(init_pos, fiber = mmf_fiber, mesh_density=50, num_rays=1000 ** 2):
+
     density_cap = 1000
 
     x0, y0, z0 = init_pos
-    theta_max = np.arcsin(fiber.NA / fiber.n) #Snell's law
+    theta_max = np.arcsin(fiber.NA / fiber.n) #Snell's law #fiber coupling
     r0 = -z0 * np.tan(theta_max)
     r = np.linspace(r0, 0, mesh_density, endpoint=False)
     r_space = r[0] - r[1]
@@ -24,7 +24,7 @@ def generate_rays(init_pos, fiber=mmf_fiber, mesh_density=50, num_rays=1000 ** 2
     origin = init_pos[:2]
 
     for i in r:
-        theta = np.linspace(0, 2 * np.pi, int(12 * mesh_density * i / r0), endpoint=False)
+        theta = np.linspace(0, 2 * np.pi, int(12 * mesh_density * i / r0), endpoint = False)
         t_space = theta[1] - theta[0]
         theta = theta + np.random.rand(len(theta)) * t_space - t_space / 2
         rmesh = i + np.random.rand(len(theta)) * r_space - r_space / 2
@@ -40,9 +40,7 @@ def generate_rays(init_pos, fiber=mmf_fiber, mesh_density=50, num_rays=1000 ** 2
 
     if n_iter1 > 0:
         refined_density = (float(num_rays) / n_iter1) ** 0.5 * mesh_density
-
         refined_density = min(refined_density, density_cap)
-
         r = np.linspace(r0, 0, refined_density, endpoint=False)
         r_space = r[0] - r[1]
         mesh = np.array([[0, 0, 0]])
@@ -100,7 +98,7 @@ def generate_rays_mc(init_pos, fiber=mmf_fiber, num_rays=100 ** 2):
         r = r0 * luckyx
         theta = 2 * np.pi * np.random.rand(n_iter2)
 
-        x = origin[0] + r * np.cos(theta)
+        x =   [0] + r * np.cos(theta)
         y = origin[1] + r * np.sin(theta)
         z = np.zeros(x.shape)
         mesh_iter2 = np.stack([x, y, z], axis=1)
@@ -137,10 +135,12 @@ def propagate_ray(ray, ray_pos, final_pos, index_num, fiber=mmf_fiber):
     return
 
 
-def propagate(rays, ray_pos, share_dict, index_num, fiber=mmf_fiber, trace=False):
+def propagate(rays, ray_pos, share_dict, index_num, fiber = mmf_fiber, trace=False):
+
     global num_processes
     theta = xyz_transform_theta(rays)
     final_pos = np.zeros(ray_pos.shape)
+
     if trace:
         plot_ellipse(fiber.a, fiber.b)
     for i, ray in enumerate(rays):
@@ -166,8 +166,10 @@ def propagate(rays, ray_pos, share_dict, index_num, fiber=mmf_fiber, trace=False
                 pos = pos_ref
     return
 
-def propagate_multithread(rays, ray_pos, fiber=mmf_fiber, trace=False):
+def propagate_multithread(rays, ray_pos, fiber = mmf_fiber, trace=False):
+
     global num_processes
+
     theta = xyz_transform_theta(rays)
     final_pos = np.zeros(ray_pos.shape)
 
@@ -192,12 +194,14 @@ def propagate_multithread(rays, ray_pos, fiber=mmf_fiber, trace=False):
 if __name__ == '__main__':
 
     num_processes = multip.cpu_count()
-    xyz, rays = generate_rays([50e-6, 0e-6, -0.0001e-6], num_rays = 1000)
+    # for x in xra
+    xyz, rays = generate_rays(np.array([75e-6, 0e-6, -0.000000001e-6]), num_rays = 1000000)
     # print('number of rays: ' + str(len(xyz)));
 
     f_pos = propagate_multithread(rays, xyz[:, :2])
     heatmap, xedges, yedges = np.histogram2d(f_pos[:, 0], f_pos[:, 1], bins=75)
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
 
-    plt.imshow(heatmap.T, extent=extent, origin='lower')
+    plt.imshow(heatmap.T, extent=extent, origin = 'lower')
+
     plt.show()

@@ -1,7 +1,7 @@
 .DS_Store
 
 mmf_ray_trace.py
-mmf_simulation_venv/
+mmf_simulation_vnenv/
 
 tmp/
 .idea/
