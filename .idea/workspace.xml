@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6ee9429-04c5-4f9d-8e04-34e65029d809" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
+    <list default="true" id="08ccdd78-3289-4077-b87f-5b093672fbe8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/R_User_Library.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/simulation.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ray_trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/ray_trace.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulation/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation/ray.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulation/ray.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,30 +19,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
-  </component>
   <component name="FileEditorManager">
-<<<<<<< HEAD
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
-=======
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simulation/ray.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/simulation/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="514">
+              <caret line="50" column="54" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ray_trace.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="205" selection-start-line="205" selection-end-line="205" />
+            <state relative-caret-position="594">
+              <caret line="191" column="66" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="66" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -43,56 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/helpers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>multiP</find>
-      <find>post</find>
-      <find>angle</find>
-      <find>pos</find>
-      <find>guided_rays</find>
-      <find>ce</find>
-<<<<<<< HEAD
-      <find>print</find>
-=======
-      <find>num_threads</find>
-<<<<<<< HEAD
-      <find>#*</find>
-      <find>fibre=mmf_fibre</find>
-      <find>fibre</find>
-=======
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
->>>>>>> 4d6d489618542f0df5adcac3c90fdfa1994552c9
-    </findStrings>
-    <replaceStrings>
-      <replace>input</replace>
-      <replace>num_processes</replace>
-      <replace>fibre</replace>
-      <replace>fiber</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="Saila &lt;saila.sms96@gmail.com&gt;" />
         <option value="Saila" />
       </list>
     </option>
@@ -101,23 +70,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mmf_ray_trace.py" />
-        <option value="$PROJECT_DIR$/helpers.py" />
         <option value="$PROJECT_DIR$/ray_trace.py" />
+        <option value="$PROJECT_DIR$/simulation/ray.py" />
+        <option value="$PROJECT_DIR$/simulation/__init__.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-17" />
-    <option name="width" value="1940" />
+    <option name="x" value="-39" />
+    <option name="y" value="172" />
+    <option name="width" value="1936" />
     <option name="height" value="1047" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -125,29 +95,24 @@
               <item name="mmf_simulation" type="b2602c69:ProjectViewProjectNode" />
               <item name="mmf_simulation" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="mmf_simulation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mmf_simulation" type="462c0819:PsiDirectoryNode" />
+              <item name="simulation" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
-  </component>
-  <component name="PyCoverageOptionsProvider">
-    <option name="myUseBundledCoveragePy" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="PyScientificConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -161,9 +126,31 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ray_trace">
+  <component name="RunManager" selected="Python.__init__">
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="mmf_simulation" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/simulation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/simulation/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="simulation" />
+      <module name="mmf_simulation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -184,30 +171,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="mmf_ray_trace" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="simulation" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mmf_ray_trace.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="ray_trace" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="simulation" />
+      <module name="mmf_simulation" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -221,7 +186,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ray_trace.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
@@ -230,8 +195,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.__init__" />
         <item itemvalue="Python.ray_trace" />
-        <item itemvalue="Python.mmf_ray_trace" />
       </list>
     </recent_temporary>
   </component>
@@ -240,352 +205,130 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e6ee9429-04c5-4f9d-8e04-34e65029d809" name="Default Changelist" comment="" />
-      <created>1560200314134</created>
+      <changelist id="08ccdd78-3289-4077-b87f-5b093672fbe8" name="Default Changelist" comment="" />
+      <created>1561874898039</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1560200314134</updated>
-      <workItem from="1560200330031" duration="20450000" />
-      <workItem from="1560708369437" duration="931000" />
-      <workItem from="1560872938628" duration="3146000" />
-<<<<<<< HEAD
-      <workItem from="1561141296969" duration="34298000" />
-      <workItem from="1561595791098" duration="1894000" />
-=======
-      <workItem from="1561141296969" duration="29684000" />
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
+      <updated>1561874898039</updated>
+      <workItem from="1561876361080" duration="9746000" />
     </task>
-    <task id="LOCAL-00001" summary="Clean up formatting.">
-      <created>1560875458109</created>
+    <task id="LOCAL-00001" summary="modified fibonacci_sphere  - calulate psi. Speed up by break at psi_max. Speed up by decrementing z.">
+      <created>1561877940517</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1560875458109</updated>
+      <updated>1561877940517</updated>
     </task>
-    <task id="LOCAL-00002" summary="Created inputs">
-      <created>1561176716812</created>
+    <task id="LOCAL-00002" summary="Generate rays returns x, y, z points that can be plotted">
+      <created>1561879077292</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1561176716812</updated>
+      <updated>1561879077292</updated>
     </task>
-    <task id="LOCAL-00003" summary="Merge branch 'master' of https://github.com/sailamshama/mmf_simulation&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1561594839655</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1561594839655</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="60719000" />
-=======
-    <option name="totallyTimeSpent" value="54211000" />
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="9746000" />
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17447495" />
-=======
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-<<<<<<< HEAD
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14436248" />
-=======
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14458464" />
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
->>>>>>> 4d6d489618542f0df5adcac3c90fdfa1994552c9
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11940298" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.32891566" />
-      <window_info anchor="bottom" id="Message" order="1" />
-<<<<<<< HEAD
-      <window_info anchor="bottom" id="Find" order="2" weight="0.26024097" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.23012048" />
-      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49946752" weight="0.33972603" />
-=======
-      <window_info anchor="bottom" id="Run" order="2" weight="0.23012048" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49789253" visible="true" weight="0.3611111" />
-      <window_info anchor="bottom" id="Find" order="4" weight="0.26024097" />
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
-      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.48666668" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-<<<<<<< HEAD
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5021075" side_tool="true" weight="0.2211111" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49946752" weight="0.1845238" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49785408" weight="0.29555556" />
-=======
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50214595" side_tool="true" weight="0.23493975" />
-<<<<<<< HEAD
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49946752" weight="0.48767123" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49785408" weight="0.28082192" />
-=======
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49946752" weight="0.1845238" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49785408" weight="0.12555556" />
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
->>>>>>> 4d6d489618542f0df5adcac3c90fdfa1994552c9
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2588889" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" sideWeight="0.2238806" side_tool="true" weight="0.32995737" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="SciView" sideWeight="0.7761194" weight="0.21588486" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.3297568" />
-      <window_info anchor="right" id="SciView" order="4" sideWeight="0.49638554" weight="0.21816881" />
-      <window_info anchor="right" id="R Graphics" order="5" weight="0.3297568" />
-      <window_info anchor="right" id="R Packages" order="6" weight="0.3297568" />
-      <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="7" sideWeight="0.5036145" side_tool="true" weight="0.2003231" />
-      <window_info anchor="right" id="Database" order="8" weight="0.3297568" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1416309" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11940298" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.32891566" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.26024097" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.23012048" />
-      <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49946752" weight="0.26831684" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.32891566" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32891566" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50214595" side_tool="true" weight="0.23493975" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49946752" weight="0.37326732" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49785408" weight="0.33069307" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.3297568" />
-      <window_info active="true" anchor="right" id="SciView" order="4" sideWeight="0.49638554" visible="true" weight="0.21816881" />
-      <window_info anchor="right" id="R Graphics" order="5" weight="0.3297568" />
-      <window_info anchor="right" id="R Packages" order="6" weight="0.3297568" />
-      <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="7" sideWeight="0.5036145" side_tool="true" weight="0.22389127" />
-      <window_info anchor="right" id="Database" order="8" weight="0.3297568" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="1" />
+      <window_info anchor="bottom" id="Message" order="2" />
+      <window_info anchor="bottom" id="Find" order="3" />
+      <window_info anchor="bottom" id="Run" order="4" weight="0.26" />
+      <window_info active="true" anchor="bottom" id="Debug" order="5" visible="true" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="0" sideWeight="0.2238806" side_tool="true" weight="0.32995737" />
+      <window_info anchor="right" id="Database" order="1" />
+      <window_info anchor="right" id="SciView" order="2" sideWeight="0.7761194" visible="true" weight="0.21588486" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ORDER">
-      <list>
-        <option value="0" />
-        <option value="2" />
-        <option value="3" />
-        <option value="1" />
-      </list>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Clean up formatting." />
-    <MESSAGE value="Input" />
-    <MESSAGE value="Created inputs" />
-    <MESSAGE value="Merge branch 'master' of https://github.com/sailamshama/mmf_simulation&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/sailamshama/mmf_simulation&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ray_trace.py</url>
-          <line>196</line>
-          <option name="timeStamp" value="14" />
-<<<<<<< HEAD
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ray_trace.py</url>
-          <line>346</line>
-          <option name="timeStamp" value="15" />
-=======
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="modified fibonacci_sphere  - calulate psi. Speed up by break at psi_max. Speed up by decrementing z." />
+    <MESSAGE value="Generate rays returns x, y, z points that can be plotted" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generate rays returns x, y, z points that can be plotted" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/simulation$mmf_ray_trace.coverage" NAME="mmf_ray_trace Coverage Results" MODIFIED="1561176886551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/simulation$ray_trace.coverage" NAME="ray_trace Coverage Results" MODIFIED="1561597772707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mmf_simulation$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1561927707314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulation" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py3/lib/python3.6/multiprocessing/connection.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/connection.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/managers.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/socket.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/matplotlib/image.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/twodim_base.py" />
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+    <entry file="file://$PROJECT_DIR$/simulation/ray.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="1134" selection-start-line="1134" selection-end-line="1134" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mmf_raytrace/ray_trace.py" />
-    <entry file="file://$PROJECT_DIR$/mmf_raytrace/test.txt" />
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3663">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/core/shape_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="347" selection-start-line="347" selection-end-line="347" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/function_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="5145" selection-start-line="5145" selection-end-line="5145" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/core/function_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/img.tiff" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/shape_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="418" column="4" selection-start-line="418" selection-start-column="4" selection-end-line="418" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitattributes">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_bundle/pydev_umd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="196" selection-start-line="196" selection-end-line="196" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/connection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="168" selection-start-line="168" selection-end-line="168" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/managers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="758" selection-start-line="758" selection-end-line="758" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/socket.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="223" selection-start-line="223" selection-end-line="223" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/IPython/core/interactiveshell.py">
-=======
-    <entry file="file://$PROJECT_DIR$/application.macosx_v3/source/ellipseCannulaModelCoreV3.java" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/core/shape_base.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/function_base.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/core/function_base.py" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/process.py" />
-    <entry file="file://$PROJECT_DIR$/img.tiff" />
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/numpy/lib/shape_base.py" />
-    <entry file="file://$PROJECT_DIR$/.gitattributes">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mmf_ray_trace.py" />
-    <entry file="file://C:/Python37/Lib/site-packages/matplotlib/backend_bases.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="2026" column="40" selection-start-line="2026" selection-start-column="40" selection-end-line="2026" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/helpers.py">
-=======
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/ray_trace.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="349" column="56" selection-start-line="349" selection-start-column="56" selection-end-line="349" selection-end-column="56" />
+        <state relative-caret-position="594">
+          <caret line="191" column="66" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="66" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/multiprocessing/process.py">
-=======
-    <entry file="file://C:/Python37/Lib/site-packages/matplotlib/backend_bases.py">
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
->>>>>>> 4d6d489618542f0df5adcac3c90fdfa1994552c9
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        <state relative-caret-position="289">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mmf_ray_trace.py">
+    <entry file="file://$PROJECT_DIR$/simulation/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="391">
-          <caret line="205" selection-start-line="205" selection-end-line="205" />
-=======
-<<<<<<< HEAD
-        <state relative-caret-position="30">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-=======
-        <state relative-caret-position="475">
-          <caret line="351" selection-start-line="351" selection-end-line="351" />
->>>>>>> a57bfd9994aefc8baad468b6e7be709ddd28ac13
->>>>>>> 4d6d489618542f0df5adcac3c90fdfa1994552c9
+        <state relative-caret-position="514">
+          <caret line="50" column="54" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>

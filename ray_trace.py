@@ -4,15 +4,14 @@ import multiprocessing as multip
 from helpers import *
 
 class mmf_fiber:
-    NA = 0.39
+    NA = 0.39   # Numerical Aperature
     n = 1.4630  #488nm RI.info
-    r = 100e-6
-    a = 0.996 * r  # x-axis radius
+    r = 100e-6 # 100 microns =
+    a = 1 * r  # x-axis radius
     b = 1 * r  # y-axis radius
-    length = 8000e-6
+    length = 8000e-6 #8000 microns = 8 mm
 
-def generate_rays(init_pos, fiber = mmf_fiber, mesh_density=50, num_rays=1000 ** 2):
-
+def generate_rays(init_pos, num_rays, fiber = mmf_fiber, mesh_density=50):
     density_cap = 1000
 
     x0, y0, z0 = init_pos
@@ -114,11 +113,13 @@ def generate_rays_mc(init_pos, fiber=mmf_fiber, num_rays=100 ** 2):
 
 
 def propagate_ray(ray, ray_pos, final_pos, index_num, fiber=mmf_fiber):
+
     theta = np.arctan(np.sqrt(ray[0] ** 2 + ray[1] ** 2) / ray[2])
     z = 0
     tan_theta = np.tan(theta)
     pos = ray_pos
     xy_ray = ray[:2]
+
     while True:
         xy_ray = norm(xy_ray)
 
@@ -132,12 +133,12 @@ def propagate_ray(ray, ray_pos, final_pos, index_num, fiber=mmf_fiber):
             xy_ray = xy_ref_ray
             pos = pos_ref
     final_pos[index_num] = fp
+
     return
 
 
 def propagate(rays, ray_pos, share_dict, index_num, fiber = mmf_fiber, trace=False):
 
-    global num_processes
     theta = xyz_transform_theta(rays)
     final_pos = np.zeros(ray_pos.shape)
 
@@ -164,44 +165,37 @@ def propagate(rays, ray_pos, share_dict, index_num, fiber = mmf_fiber, trace=Fal
                     plt.plot([pos[0], pos_ref[0]], [pos[1], pos_ref[1]], 'b-')
                 xy_ray = xy_ref_ray
                 pos = pos_ref
-    return
+    pass
 
-def propagate_multithread(rays, ray_pos, fiber = mmf_fiber, trace=False):
+def propagate_multithread(rays, ray_pos):
 
-    global num_processes
-
-    theta = xyz_transform_theta(rays)
-    final_pos = np.zeros(ray_pos.shape)
-
-    rays_part = np.array_split(rays, num_processes)
-    ray_pos_part = np.array_split(ray_pos, num_processes)
-    index_part = np.array_split(range(len(rays)), num_processes)
+    rays_part = np.array_split(rays, multip.cpu_count())
+    ray_pos_part = np.array_split(ray_pos, multip.cpu_count())
+    index_part = np.array_split(range(len(rays)), multip.cpu_count())
     manager = multip.Manager()
     f_pos = manager.dict()
     jobs = []
 
-    if __name__ == '__main__':
-        for k in range(len(rays_part)):
-            p = multip.Process(target=propagate, args=(rays_part[k], ray_pos_part[k], f_pos, index_part[k]))
-            jobs.append(p)
-            p.start()
-        for proc in jobs:
-            proc.join()
+    for k in range(len(rays_part)):
+        p = multip.Process(target=propagate, args=(rays_part[k], ray_pos_part[k], f_pos, index_part[k]))
+        jobs.append(p)
+        p.start()
+    for proc in jobs:
+        proc.join()
 
     return np.array(f_pos.values())
 
 
 if __name__ == '__main__':
 
-    num_processes = multip.cpu_count()
     # for x in xra
-    xyz, rays = generate_rays(np.array([75e-6, 0e-6, -0.000000001e-6]), num_rays = 1000000)
+    point_source_location = np.array([0e-6, 0e-6, -0.000000001e-6])
+    xyz, rays = generate_rays(point_source_location, num_rays = 100)
     # print('number of rays: ' + str(len(xyz)));
 
-    f_pos = propagate_multithread(rays, xyz[:, :2])
-    heatmap, xedges, yedges = np.histogram2d(f_pos[:, 0], f_pos[:, 1], bins=75)
+    final_positions = propagate_multithread(rays, xyz[:, :2])
+    heatmap, xedges, yedges = np.histogram2d(final_positions[:, 0], final_positions[:, 1], bins = 150)
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
-
     plt.imshow(heatmap.T, extent=extent, origin = 'lower')
-
     plt.show()
+    plt.imsave(heatmap.T)

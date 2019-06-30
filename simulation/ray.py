@@ -1,4 +1,5 @@
 import vectormath as vmath
+import numpy as np
 
 class Fiber:
     NA = 0.39  # Numerical Aperature
@@ -11,7 +12,7 @@ class Fiber:
 
 
 class Ray():
-    def __init__(self, start, direction):
+    def __init__(self, start = np.array([0,0]), theta = 0, psi = 0):
         Ray.start = start
-        Ray.end = direction
-
+        Ray.theta = theta
+        Ray.psi = psi

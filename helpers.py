@@ -16,12 +16,10 @@ def reflect(w, d):
 
     return d_prime
 
-
 def xyz_transform_theta(rays):
     # returns angle w.r.t to fiber axis
 
     return np.arctan(np.sqrt(rays[:, 0] ** 2 + rays[:, 1] ** 2) / rays[:, 2])
-
 
 def guided_rays(rays, fiber):
     theta = xyz_transform_theta(rays)
@@ -62,7 +60,7 @@ def in_fiber(pos, fiber):
 
     return r < r_ellip
 
-def chord(pos, ray, fiber, trace=False):
+def chord(pos, ray, fiber):
     if np.isnan(ray).all():
         return 100., pos, np.array([0, 0])
     a = fiber.a
