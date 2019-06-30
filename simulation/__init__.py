@@ -6,10 +6,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def fibonacci_sphere(samples=1, psi_max=math.pi):
+DEBUG=1
 
+def generate_rays(initial_points, samples, psi_max=math.pi):
+
+    # Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap.
     # https://stackoverflow.com/questions/9600801/evenly-distributing-n-points-on-a-sphere
-    # https://www.youtube.com/watch?v=c-6DV4ZyCdo
 
     rnd = 1.
     offset = 2. / samples
@@ -31,20 +33,16 @@ def fibonacci_sphere(samples=1, psi_max=math.pi):
         else:
             points = np.vstack((points, [x, y, z]))
 
-    return points
-
-
-def generate_rays(initial_points, ray_density):
-
     # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index) # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
     # ray_defining_points = fibonacci_sphere(samples = ray_density, randomize = False, psi_max)
+
     pass
 
 
 if __name__ == '__main__':
-    # initial_points = vmath.Vector3Array()
+    initial_points = vmath.Vector3Array()
 
-    # generate_rays(initial_points, ray_density)
+    generate_rays(initial_points, samples = 10000)
 
     # r0 = -z0 * np.tan(theta_max)
     # r = np.linspace(r0, 0, mesh_density, endpoint=False)
