@@ -18,12 +18,10 @@ def generate_rays_multiple_sources(initial_points, samples, psi_max=math.pi):
         else:
             rays_multiple_points = np.vstack((rays_multiple_points, rays_single_point))
 
-    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index) # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
-    # ray_defining_points = fibonacci_sphere(samples = ray_density, randomize = False, psi_max)
-
     return rays_multiple_points
 
 # Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
+
 def generate_rays_single_source(initial_point, psi_max = math.pi, samples = 1000):
     rnd = 1.
     offset = 2. / samples
@@ -44,8 +42,38 @@ def generate_rays_single_source(initial_point, psi_max = math.pi, samples = 1000
 
     return rays
 
+def get_intersection(ray, fiber):
+    pass
+
 if __name__ == '__main__':
 
     initial_points = np.array([[0e-6, 0e-6, -0.000000001e-6], [50e-6, 0e-6, -0.000000001e-6], [99e-6, 0e-6, -0.000000001e-6]])
+    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index) # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
     rays = generate_rays_multiple_sources(initial_points, 100, math.pi / 2)
-    print(rays[1][20].start, rays[2][20].start, rays[0][20].start, rays[0][20].theta, rays[0][20].psi)
+
+
+    # draw cylinder
+    # source: https://stackoverflow.com/questions/26989131/add-cylinder-to-plot
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
+
+    x = np.linspace(-1, 1, 100)
+    z = np.linspace(-2, 2, 100)
+    Xc, Zc = np.meshgrid(x, z)
+    Yc = np.sqrt(1 - Xc ** 2)
+    rstride = 20
+    cstride = 10
+    ax.plot_surface(Xc, Yc, Zc, alpha=0.2, rstride=rstride, cstride=cstride)
+    ax.plot_surface(Xc, -Yc, Zc, alpha=0.2, rstride=rstride, cstride=cstride)
+
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+
+    plt.show()
+    t = 1
+    # draw rays
+
+
+
+
