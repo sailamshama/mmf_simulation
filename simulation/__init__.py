@@ -1,18 +1,13 @@
-from simulation.ray import Ray
-import vectormath as vmath
+from simulation.objects import Ray, Fiber
 import math
-import random
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
-DEBUG = 1
 
-def generate_rays_multiple_sources(initial_points, samples, psi_max=math.pi):
-
+def generate_rays_multiple_sources(initial_points, samples, psi_cutoff=math.pi):
     rays_multiple_points = np.array([])
     for initial_point in initial_points:
-        rays_single_point = generate_rays_single_source(initial_point, psi_max, samples)
+        rays_single_point = generate_rays_single_source(initial_point, psi_cutoff, samples)
         if np.size(rays_multiple_points) == 0:
             rays_multiple_points = rays_single_point
         else:
@@ -20,9 +15,9 @@ def generate_rays_multiple_sources(initial_points, samples, psi_max=math.pi):
 
     return rays_multiple_points
 
-# Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
 
-def generate_rays_single_source(initial_point, psi_max = math.pi, samples = 1000):
+# Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
+def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=1000):
     rnd = 1.
     offset = 2. / samples
     increment = math.pi * (3. - math.sqrt(5.))
@@ -32,7 +27,7 @@ def generate_rays_single_source(initial_point, psi_max = math.pi, samples = 1000
         z = - (((i * offset) - 1) + (offset / 2))
         r = math.sqrt(1 - pow(z, 2))
         psi = math.atan2(r, z)
-        if psi > psi_max:
+        if psi > psi_cutoff:
             break
         theta = ((i + rnd) % samples) * increment
         if rays.size == 0:
@@ -42,38 +37,28 @@ def generate_rays_single_source(initial_point, psi_max = math.pi, samples = 1000
 
     return rays
 
-def get_intersection(ray, fiber):
-    pass
 
 if __name__ == '__main__':
 
-    initial_points = np.array([[0e-6, 0e-6, -0.000000001e-6], [50e-6, 0e-6, -0.000000001e-6], [99e-6, 0e-6, -0.000000001e-6]])
-    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index) # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
-    rays = generate_rays_multiple_sources(initial_points, 100, math.pi / 2)
+    fiber = Fiber()
+    init_points = np.array([[0e-6, 0e-6, -0.000000001e-6], [50e-6, 0e-6, -0.000000001e-6], [99e-6, 0e-6, -0.000000001e-6]])
+    # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
+    psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
+    generated_rays = generate_rays_multiple_sources(init_points, 10000, psi_max)
 
+    # TODO: create cylinder as per fiber specifications
+    fiber.draw()
 
-    # draw cylinder
-    # source: https://stackoverflow.com/questions/26989131/add-cylinder-to-plot
-    fig = plt.figure()
-    ax = fig.gca(projection='3d')
+    end_points = np.array([])
+    for ray in generated_rays:
+        while ray.start[3] < fiber.length: #TODO: watch out of infinite loop
+            reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
+            ray.draw(reflected_ray.start)
+            ray = reflected_ray
+        end_points.append(ray.start)
 
-    x = np.linspace(-1, 1, 100)
-    z = np.linspace(-2, 2, 100)
-    Xc, Zc = np.meshgrid(x, z)
-    Yc = np.sqrt(1 - Xc ** 2)
-    rstride = 20
-    cstride = 10
-    ax.plot_surface(Xc, Yc, Zc, alpha=0.2, rstride=rstride, cstride=cstride)
-    ax.plot_surface(Xc, -Yc, Zc, alpha=0.2, rstride=rstride, cstride=cstride)
+    #TODO: draw histogram of end_points
 
-    ax.set_xlabel("X")
-    ax.set_ylabel("Y")
-    ax.set_zlabel("Z")
-
-    plt.show()
     t = 1
-    # draw rays
-
-
 
 

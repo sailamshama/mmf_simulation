@@ -48,7 +48,7 @@ def norm_rays(rays):
     return rays / np.sqrt(np.tile(np.sum(rays ** 2, axis=1), [1, 1]).transpose())
 
 def visualize_vec(vec):
-    plt.plot([0, vec[0]], [0, vec[1]])
+    plt.draw([0, vec[0]], [0, vec[1]])
     plt.show()
 
 def in_fiber(pos, fiber):
@@ -86,5 +86,5 @@ def plot_ellipse(a, b):
     r = a * b / (np.sqrt((b * np.cos(theta)) ** 2 + (a * np.sin(theta)) ** 2))
     x = r * np.cos(theta)
     y = r * np.sin(theta)
-    plt.plot(x, y)
+    plt.draw(x, y)
 
