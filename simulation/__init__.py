@@ -46,18 +46,21 @@ if __name__ == '__main__':
     psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
     generated_rays = generate_rays_multiple_sources(init_points, 10000, psi_max)
 
-    # TODO: create cylinder as per fiber specifications
-    fiber.draw()
+    fig = plt.figure()
+    fiber.draw(fig)
+    ray = Ray()
+    final_point = np.array([0.00001, 0.0001, 0.008])
+    ray.draw(fig, final_point)
+    plt.show()
 
     # end_points = np.array([])
     # for ray in generated_rays:
-    #     while ray.start[3] < fiber.length: #TODO: watch out of infinite loop
+    #     while ray.start[3] < fiber.length: # TODO: watch out of infinite loop
     #         reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
     #         ray.draw(reflected_ray.start)
     #         ray = reflected_ray
     #     end_points.append(ray.start)
-    #
-    # #TODO: draw histogram of end_points
+    # TODO: draw histogram of end_points
 
     t = 1
 
