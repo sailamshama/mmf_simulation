@@ -49,15 +49,15 @@ if __name__ == '__main__':
     # TODO: create cylinder as per fiber specifications
     fiber.draw()
 
-    end_points = np.array([])
-    for ray in generated_rays:
-        while ray.start[3] < fiber.length: #TODO: watch out of infinite loop
-            reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
-            ray.draw(reflected_ray.start)
-            ray = reflected_ray
-        end_points.append(ray.start)
-
-    #TODO: draw histogram of end_points
+    # end_points = np.array([])
+    # for ray in generated_rays:
+    #     while ray.start[3] < fiber.length: #TODO: watch out of infinite loop
+    #         reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
+    #         ray.draw(reflected_ray.start)
+    #         ray = reflected_ray
+    #     end_points.append(ray.start)
+    #
+    # #TODO: draw histogram of end_points
 
     t = 1
 
