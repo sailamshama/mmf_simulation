@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 
+
 class Fiber:
     NA = 0.39  # Numerical Aperture
     core_index = 1.4630  # Refractive index 88nm RI.info
@@ -34,25 +35,51 @@ class Fiber:
         ax.set_zlabel("Z")
 
     def get_intersection(self, ray):
+        # TODO: debug this
         # start point of reflected ray =  intersection point of previous point and wall of fiber
         # consider edge case top face of fiber and bottom face of fiber
-        #refer to mathematica notebook intersection.nb
+        # refer to mathematica notebook intersection.nb
+        # x, y = position of ray
 
-        intersection = np.array([0, 0, 0])
-        intersection[0] = (self.ellipse_b ** 2) * np.cos(ray.theta) * ray.start[0]
-        intersection[0] += (self.ellipse_a ** 2) * np.cos(ray.theta) * ray.start[1]
-        intersection[0] += self.ellipse_a * self.ellipse_b * np.sqrt((np.cos(ray.theta) ** 2) * (self.ellipse_a**2 + self.ellipse_b**2 - ray.start[0]**2 + 2*ray.start[0]*ray.start[1] - ray.start[2] ** 2))
-        intersection[0] /= -((self.ellipse_a ** 2) * np.cos(ray.theta) + (self.ellipse_b ** 2) * np.cos(ray.theta))
+        a = self.ellipse_a
+        b = self.ellipse_b
+        t = ray.theta
+        xi = ray.start[0]
+        yi = ray.start[1]
 
-        intersection[1] = self.ellipse_b ** 2 * np.cos(ray.theta) * ray.start[1]
-        intersection[1] += self.ellipse_a * (self.ellipse_a * np.cos(ray.theta) - self.ellipse_b * np.sqrt((np.cos(ray.theta)**2) * np.sqrt(self.ellipse_a**2 + self.ellipse_b**2 - ray.start[0]**2 + 2 * ray.start[0] * ray.start[1] - ray.start[1]**2)))
-        intersection[1] = -np.sin(intersection[1])
-        intersection[1] /= (self.ellipse_a **2 + self.ellipse_b **2) * np.cos(ray.theta) ** 2
+        intersection = np.array([0,0,0])
+        intersection[0] = (b * np.cos(t)) **2 + (a * np.sin(t)) ** 2
+        intersection[0] += (np.sin(t) * xi - np.cos(t) * yi) ** 2
+        intersection[0] *= (a*b)**2
+        intersection[0] = np.sqrt(intersection[0])
+        intersection[0] = - (b**2) * np.cos(t) * xi
+        intersection[0] += - (a**2) * np.sin(t) * yi
+        intersection[0] /= ((b * np.cos(t)) ** 2 + (a * np.sin(t)) ** 2)
+        intersection[0] *= np.cos(t)
+        intersection[0] += xi
 
-        intersection[2] = np.sqrt((intersection[0] - ray.start[0]) ** 2 + (intersection[1] - ray.start[1]) ** 2) * np.tan(ray.psi)
+        intersection[1] = (b * np.cos(t)) **2 + (a * np.sin(t)) ** 2
+        intersection[1] += (np.sin(t) * xi - np.cos(t) * yi) ** 2
+        intersection[1] *= (a*b)**2
+        intersection[1] = np.sqrt(intersection[0])
+        intersection[1] = - (b**2) * np.cos(t) * xi
+        intersection[1] += - (a**2) * np.sin(t) * yi
+        intersection[1] /= ((b * np.cos(t)) ** 2 + (a * np.sin(t)) ** 2)
+        intersection[1] *= np.sin(t)
+        intersection[1] += yi
+
+        intersection[2] = np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) * np.tan(ray.psi)
 
         return intersection
 
+    def reflect(self, ray):
+        # TODO: test this
+        intersection = self.get_intersection(ray)
+        ray_length = np.sqrt(np.sum(ray.start ** 2))
+        reflection_angle = np.arcsin((intersection[2] - ray.start[2]) / ray_length)
+        psi_reflected_ray = np.pi / 2 - reflection_angle
+        reflected_ray = Ray(start=intersection, theta=ray.theta, psi=psi_reflected_ray)
+        return reflected_ray
 
 class Ray:
     def __init__(self, start=np.array([0, 0, 0]), theta=0, psi=0):
