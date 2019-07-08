@@ -41,15 +41,17 @@ def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=1000)
 if __name__ == '__main__':
 
     fiber = Fiber()
-    init_points = np.array([[0e-6, 0e-6, -0.000000001e-6], [50e-6, 0e-6, -0.000000001e-6], [99e-6, 0e-6, -0.000000001e-6]])
+
+    init_points = np.array([[-50e-6, 0e-6, 0e-6]])
     # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
     psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
     generated_rays = generate_rays_multiple_sources(init_points, 10000, psi_max)
 
     fig = plt.figure()
     fiber.draw(fig)
-    ray = Ray()
-    final_point = np.array([0.00001, 0.0001, 0.008])
+    ray = Ray(np.array([0.000000,0.000000,0.000000]), 0, np.pi/ 2) #should return (ellipse.a, 0, 0)
+    final_point = fiber.get_intersection(ray) # should get [ellipse.a, 0,0]
+    # final_point = np.array([1,1,1])
     ray.draw(fig, final_point)
     plt.show()
 
