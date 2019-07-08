@@ -9,7 +9,7 @@ class Fiber:
     surrounding_index = 1
     ellipse_a = 100e-6  # semi-major axis of fiber cross section
     ellipse_b = 100e-6  # semi-minor axis of mmf cross section
-    length = 12000e-6  # length of fiber in microns. 8000 um = 8 mm):
+    length = 12000e-6   # length of fiber in microns. 8000 um = 8 mm):
 
     # plot cylinder source: https://stackoverflow.com/questions/26989131/add-cylinder-to-plot
     # spherical tutorial: https://stackoverflow.com/questions/36816537/spherical-coordinates-plot-in-matplotlib
@@ -26,22 +26,31 @@ class Fiber:
     def draw(self, fig):
 
         ax = fig.gca(projection='3d')
-        ax.plot_surface(self.x_grid, self.y_grid, self.z_grid, alpha = 0.1)
+        ax.plot_surface(self.x_grid, self.y_grid, self.z_grid, alpha=0.1)
 
-        ax.set(xlim=(-1.5 * self.ellipse_a, 1.5 * self.ellipse_a), ylim = (-1.5 * self.ellipse_b , 1.5 * self.ellipse_b ), zlim = (-100e-6 , 1.2 * self.length))
+        ax.set(xlim=(-1.5 * self.ellipse_a, 1.5 * self.ellipse_a), ylim=(-1.5 * self.ellipse_b, 1.5 * self.ellipse_b), zlim=(-100e-6, 1.2 * self.length))
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
 
-
-    def reflect(self, ray):
-        intersection = np.array([0,0,0])
+    def get_intersection(self, ray):
         # start point of reflected ray =  intersection point of previous point and wall of fiber
         # consider edge case top face of fiber and bottom face of fiber
+        #refer to mathematica notebook intersection.nb
+        intersection = np.array([0, 0, 0])
+        intersection[0] = (self.ellipse_b ** 2) * np.cos(ray.theta) * ray.start[0]
+        intersection[0] += (self.ellipse_a ** 2) * np.cos(ray.theta) * ray.start[1]
+        intersection[0] += self.ellipse_a * self.ellipse_b * np.sqrt((np.cos(ray.theta) ** 2) * (self.ellipse_a**2 + self.ellipse_b**2 - ray.start[0]**2 + 2*ray.start[0]*ray.start[1] - ray.start[2] ** 2))
+        intersection[0] /= -((self.ellipse_a ** 2) * np.cos(ray.theta) + (self.ellipse_b ** 2) * np.cos(ray.theta))
 
+        intersection[1] = self.ellipse_b ** 2 * np.cos(ray.theta) * ray.start[1]
+        intersection[1] += self.ellipse_a * (self.ellipse_a * np.cos(ray.theta) - self.ellipse_b * np.sqrt((np.cos(ray.theta)**2) * np.sqrt(self.ellipse_a**2 + self.ellipse_b**2 - ray.start[0]**2 + 2 * ray.start[0] * ray.start[1] - ray.start[1]**2))
+        intersection[1] = -np.sin(intersection[1])
+        intersection[1] /= (self.ellipse_a **2 + self.ellipse_b **2) * np.cos(ray.theta) ** 2
 
-        return Ray([intersection], theta, psi)
-
+        intersection[2] = np.sqrt((intersection[0] - ray.start[0]) ** 2 + (intersection[1] - ray.start[1]) ** 2) * np.tan(ray.psi)
+        
+        return intersection
 
 class Ray:
     def __init__(self, start=np.array([0, 0, 0]), theta=0, psi=0):
