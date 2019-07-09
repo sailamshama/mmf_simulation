@@ -3,7 +3,6 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 def generate_rays_multiple_sources(initial_points, samples, psi_cutoff=math.pi):
     rays_multiple_points = np.array([])
     for initial_point in initial_points:
@@ -12,7 +11,6 @@ def generate_rays_multiple_sources(initial_points, samples, psi_cutoff=math.pi):
             rays_multiple_points = rays_single_point
         else:
             rays_multiple_points = np.vstack((rays_multiple_points, rays_single_point))
-
     return rays_multiple_points
 
 
@@ -21,33 +19,39 @@ def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=1000)
     rnd = 1.
     offset = 2. / samples
     increment = math.pi * (3. - math.sqrt(5.))
-    rays = np.array([])
+
+    rays = np.array([Ray(initial_point) for i in range(samples)])
 
     for i in range(samples):
+
         z = - (((i * offset) - 1) + (offset / 2))
         r = math.sqrt(1 - pow(z, 2))
         psi = math.atan2(r, z)
-        if psi > psi_cutoff:
+        if psi > psi_cutoff: #zenith angle
             break
-        theta = ((i + rnd) % samples) * increment
-        if rays.size == 0:
-            rays = np.array([Ray(initial_point, theta, psi)])
-        else:
-            rays = np.append(rays, np.array([Ray(initial_point, theta, psi)]))
+        theta = ((i + rnd) % samples) * increment #azimuthal (projection) angle
+
+        rays[i].theta = theta
+        rays[i].psi = psi
 
     return rays
 
+def probe_lengths(rays):
+    # plot histogram of lengths of rays reflected within the fiber to see if there's a pattern
+    pass
+
+def create_image(end_points):
+    pass
 
 if __name__ == '__main__':
 
     fiber = Fiber()
-
     init_points = np.array([[-50e-6, 0e-6, 0e-6]])
     # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
     # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
     psi_max = np.pi/ 2
     # generated_rays = generate_rays_multiple_sources(init_points, 100000, psi_max)
-    generated_rays = generate_rays_single_source(np.squeeze(init_points), 1000, psi_max)
+    generated_rays = generate_rays_single_source(np.squeeze(init_points), psi_max, 1000)
 
     # TODO: debug this
     points = np.zeros((generated_rays.size, 3))
@@ -60,41 +64,10 @@ if __name__ == '__main__':
     ax.set_xlim3d(-1, 1)
     ax.set_ylim3d(-1, 1)
     ax.set_zlim3d(-1, 1)
-    ax.scatter3D(points[:,0], points[:,1 ], points[:, 2], zdir='z', s=1, c=None)
+    ax.scatter3D(points[:,0], points[:,1], points[:, 2], zdir='z', s=1, c=None)
     plt.show()
     plt.close(generated_rays_figure)
 
-    # fig = plt.figure()
-    # fiber.draw(fig)
-    #
-    # # ray = Ray(np.array([0.000000, 0.000000, 0.000000]), 0, np.pi/ 2) #should return (ellipse.a, 0, 0)
-    # # final_point = fiber.get_intersection(ray) # should get [ellipse.a, 0,0]
-    # # ray.draw(fig, final_point)
-    # #
-    # # ray = Ray(np.array([0.000000, 0.000000, 0.000000]), np.pi/2, np.pi / 2)  # should return (ellipse.a, 0, 0)
-    # # final_point = fiber.get_intersection(ray)
-    # # ray.draw(fig, final_point)
-    # #
-    # # ray = Ray(np.array([0.000000, 0.000000, 0.000000]), np.pi / 2, 0)  # should return straight line above
-    # # final_point = fiber.get_intersection(ray)
-    # # ray.draw(fig, final_point)
-    #
-    # ray = Ray(np.array([0.000000, 0.000000, 0.002]), 0, np.pi/4)  # should return straight line above
-    # final_point = fiber.get_intersection(ray)
-    # ray.draw(fig, final_point)
-    # plt.show()
-    #
-    # # end_points = np.array([])
-    # # for ray in generated_rays:
-    # #     while ray.start[3] < fiber.length: # TODO: watch out of infinite loop
-    # #         reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
-    # #         ray.draw(reflected_ray.start)
-    # #         ray = reflected_ray
-    # #     end_points.append(ray.start)
-    # # TODO: draw histogram of end_points
-    #
-    #
-    #
-    t = 1
+    end_points = fiber.propagate(generated_rays)
 
 
