@@ -30,7 +30,6 @@ def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=1000)
             rays = rays[:i]
             break
         theta = ((i + rnd) % samples) * increment #azimuthal (projection) angle
-
         rays[i].theta = theta
         rays[i].psi = psi
 
@@ -48,16 +47,15 @@ if __name__ == '__main__':
     fiber = Fiber()
     init_points = np.array([[-50e-6, 0e-6, 0e-6]])
     # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
-    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
-    psi_max = np.pi/ 2
-    # generated_rays = generate_rays_multiple_sources(init_points, 100000, psi_max)
-    generated_rays = generate_rays_single_source(np.squeeze(init_points), psi_max, 1000)
+    psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
+    # psi_max = np.pi/ 2
+    generated_rays = generate_rays_multiple_sources(init_points, 100000, psi_max)
+    # generated_rays = generate_rays_single_source(np.squeeze(init_points), psi_max, 1000)
 
     # TODO: debug this
     points = np.zeros((generated_rays.size, 3))
     for i, ray in enumerate(generated_rays):
         points[i] = np.array([np.sin(ray.psi) * np.cos(ray.theta), np.sin(ray.psi) * np.sin(ray.theta), np.cos(ray.psi)])
-        print(points[i])
 
     generated_rays_figure = plt.figure()
     ax = plt.gca(projection='3d')
