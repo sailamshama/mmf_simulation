@@ -33,6 +33,15 @@ class Fiber:
         ax.set_zlabel("Z")
 
     def get_intersection(self, ray):
+
+        # case when ray entering from outside fiber
+        if ray.start[2] < 0:
+            r = - ray.start[2] * np.tan(ray.psi)
+            x = r * np.cos(ray.theta)
+            y = r * np.sin(ray.theta)
+
+            return np.array([x, y, 0])
+
         # TODO: debug this
         # start point of reflected ray =  intersection point of previous point and wall of fiber
         # consider edge case top face of fiber and bottom face of fiber
