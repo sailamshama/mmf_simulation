@@ -47,23 +47,51 @@ if __name__ == '__main__':
     psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
     generated_rays = generate_rays_multiple_sources(init_points, 10000, psi_max)
 
-    fig = plt.figure()
-    fiber.draw(fig)
-    ray = Ray(np.array([0.000000,0.000000,0.000000]), 0, np.pi/ 2) #should return (ellipse.a, 0, 0)
-    final_point = fiber.get_intersection(ray) # should get [ellipse.a, 0,0]
-    # final_point = np.array([1,1,1])
-    ray.draw(fig, final_point)
+    points = np.zeros((generated_rays.size, 3))
+    for i, ray in enumerate(generated_rays):
+        points[i] = np.array([np.sin(ray.psi) * np.cos(ray.theta), np.sin(ray.psi) * np.sin(ray.theta), np.cos(ray.psi)])
+        print(points[i])
+
+    generated_rays_figure = plt.figure()
+    ax = plt.gca(projection='3d')
+    ax.set_xlim3d(-1, 1)
+    ax.set_ylim3d(-1, 1)
+    ax.set_zlim3d(-1, 1)
+    ax.scatter3D(points[:,0], points[:,1 ], points[:, 2], zdir='z', s=1, c=None)
     plt.show()
+    # plt.close(generated_rays_figure)
 
-    # end_points = np.array([])
-    # for ray in generated_rays:
-    #     while ray.start[3] < fiber.length: # TODO: watch out of infinite loop
-    #         reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
-    #         ray.draw(reflected_ray.start)
-    #         ray = reflected_ray
-    #     end_points.append(ray.start)
-    # TODO: draw histogram of end_points
-
+    # fig = plt.figure()
+    # fiber.draw(fig)
+    #
+    # # ray = Ray(np.array([0.000000, 0.000000, 0.000000]), 0, np.pi/ 2) #should return (ellipse.a, 0, 0)
+    # # final_point = fiber.get_intersection(ray) # should get [ellipse.a, 0,0]
+    # # ray.draw(fig, final_point)
+    # #
+    # # ray = Ray(np.array([0.000000, 0.000000, 0.000000]), np.pi/2, np.pi / 2)  # should return (ellipse.a, 0, 0)
+    # # final_point = fiber.get_intersection(ray)
+    # # ray.draw(fig, final_point)
+    # #
+    # # ray = Ray(np.array([0.000000, 0.000000, 0.000000]), np.pi / 2, 0)  # should return straight line above
+    # # final_point = fiber.get_intersection(ray)
+    # # ray.draw(fig, final_point)
+    #
+    # ray = Ray(np.array([0.000000, 0.000000, 0.002]), 0, np.pi/4)  # should return straight line above
+    # final_point = fiber.get_intersection(ray)
+    # ray.draw(fig, final_point)
+    # plt.show()
+    #
+    # # end_points = np.array([])
+    # # for ray in generated_rays:
+    # #     while ray.start[3] < fiber.length: # TODO: watch out of infinite loop
+    # #         reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
+    # #         ray.draw(reflected_ray.start)
+    # #         ray = reflected_ray
+    # #     end_points.append(ray.start)
+    # # TODO: draw histogram of end_points
+    #
+    #
+    #
     t = 1
 
 
