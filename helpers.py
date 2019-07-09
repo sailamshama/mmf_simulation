@@ -9,7 +9,6 @@ def get_wall_vec(fiber, x, y):
 
     return w
 
-
 def reflect(w, d):
     d_prime = np.dot(w, d) * w * 2 - d
     d_prime = norm(d_prime)
@@ -33,18 +32,14 @@ def norm(vec):
 
     return vec / np.sqrt(np.sum(vec ** 2))
 
-
 def partition(arr_like, size):
     assert type(size) == int
     temp_list = [[] in range(len(arr_like) / size + 1)]
     for i, val in enumerate(arr_like):
         temp_list[i / size].append(val)
-
     return temp_list
 
-
 def norm_rays(rays):
-
     return rays / np.sqrt(np.tile(np.sum(rays ** 2, axis=1), [1, 1]).transpose())
 
 def visualize_vec(vec):

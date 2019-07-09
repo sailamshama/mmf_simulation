@@ -97,7 +97,7 @@ def generate_rays_mc(init_pos, fiber=mmf_fiber, num_rays=100 ** 2):
         r = r0 * luckyx
         theta = 2 * np.pi * np.random.rand(n_iter2)
 
-        x =   [0] + r * np.cos(theta)
+        x = origin[0] + r * np.cos(theta)
         y = origin[1] + r * np.sin(theta)
         z = np.zeros(x.shape)
         mesh_iter2 = np.stack([x, y, z], axis=1)

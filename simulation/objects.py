@@ -38,7 +38,7 @@ class Fiber:
         # consider edge case top face of fiber and bottom face of fiber
         # refer to mathematica notebook intersection.nb
 
-        if ray.psi == np.pi:
+        if ray.psi == 0:
             return np.array([ray.start[0], ray.start[1], self.length])
 
         a = self.ellipse_a
@@ -46,6 +46,7 @@ class Fiber:
         t = ray.theta
         xi = ray.start[0]
         yi = ray.start[1]
+        zi = ray.start[2]
 
         intersection = np.zeros([3])
         temp1 = ((b * np.cos(t)) ** 2 + (a * np.sin(t)) ** 2)
@@ -56,9 +57,13 @@ class Fiber:
         intersection[0] = xi + temp4 * np.cos(t)
         intersection[1] = yi + temp4 * np.sin(t)
         # TODO: account for negative z values
-        intersection[2] = np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) / np.tan(ray.psi)
+        intersection[2] = zi + np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) / np.tan(ray.psi)
 
         return intersection
+
+    def propagate(self, rays):
+        # TODO: return final positions of rays
+        pass
 
     def reflect(self, ray):
         # TODO: test this
@@ -70,6 +75,7 @@ class Fiber:
         return reflected_ray
 
 class Ray:
+    # TODO: throw errors for invalid values
     def __init__(self, start=np.array([0, 0, 0]), theta=0, psi=0):
         Ray.start = start
         Ray.theta = theta
