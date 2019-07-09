@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
-
+import math
 
 class Fiber:
     NA = 0.39             # Numerical Aperture
     core_index = 1.4630
     cladding_index = 1.45
     surrounding_index = 1
-    ellipse_a = 100e-6    # semi-major axis of fiber cross section
+    ellipse_a = 100e-6    # semi-major axis of fiber cross section #TODO: adjust this to core radius
     ellipse_b = 100e-6    # semi-minor axis of mmf cross section
     length = 12000e-6     # length of fiber in microns. 8000 um = 8 mm):
 
@@ -33,7 +33,6 @@ class Fiber:
         ax.set_zlabel("Z")
 
     def get_intersection(self, ray):
-
         # case when ray entering from outside fiber
         if ray.start[2] < 0:
             r = - ray.start[2] * np.tan(ray.psi)
@@ -66,13 +65,9 @@ class Fiber:
         intersection[0] = xi + temp4 * np.cos(t)
         intersection[1] = yi + temp4 * np.sin(t)
         # TODO: account for negative z values
-        intersection[2] = zi + np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) / np.tan(ray.psi)
+        intersection[2] = zi + np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) / math.tan(ray.psi)
 
         return intersection
-
-    def propagate(self, rays):
-        # TODO: return final positions of rays
-        pass
 
     def reflect(self, ray):
         # TODO: test this
@@ -82,6 +77,26 @@ class Fiber:
         psi_reflected_ray = np.pi / 2 - reflection_angle
         reflected_ray = Ray(start=intersection, theta=ray.theta, psi=psi_reflected_ray)
         return reflected_ray
+
+    def refract(self, ray):
+        # TODO: test this
+        #check that ray.start[2] == 0
+        refracted_ray = Ray(start=ray.start)
+        psi_r = np.arcsin(self.surrounding_index / self.core_index * np.sin(ray.psi))
+        return refracted_ray
+
+    def propagate(self, rays):
+        # TODO: return final positions of rays
+        # end_points = np.array([])
+        # for ray in generated_rays: # TODO: watch out of infinite loop
+        #     while ray.start[3] < fiber.length:
+        #         reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
+        #         ray.draw(reflected_ray.start)
+        #         ray = reflected_ray
+        #     end_points.append(ray.start)
+        # return end_points
+        pass
+
 
 class Ray:
     # TODO: throw errors for invalid values
@@ -99,5 +114,4 @@ class Ray:
         ax.plot(xs, ys, zs)
 
     def length(self, final_point):
-
         return np.sqrt(sum((final_point - self.start) ** 2))

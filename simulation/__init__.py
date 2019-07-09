@@ -23,11 +23,11 @@ def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=1000)
     rays = np.array([Ray(initial_point) for i in range(samples)])
 
     for i in range(samples):
-
         z = - (((i * offset) - 1) + (offset / 2))
         r = math.sqrt(1 - pow(z, 2))
         psi = math.atan2(r, z)
         if psi > psi_cutoff: #zenith angle
+            rays = rays[:i]
             break
         theta = ((i + rnd) % samples) * increment #azimuthal (projection) angle
 
