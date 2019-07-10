@@ -46,36 +46,29 @@ def create_image(end_points):
 if __name__ == '__main__':
 
     fiber = Fiber()
-    fig1 = plt.figure()
-    fiber.draw(fig1)
+    fig = plt.figure()
+    fiber.draw(fig)
 
-    ray = Ray(np.array([0, 0, 0]), 0, np.pi/100)
-    fiber.propagate(ray, fig1, draw=True)
-    plt.show()
+    init_points = np.array([[0e-6, 0e-6, 0e-6], [0, 0, -50e-6]])
+    # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
 
-    fiber = Fiber()
-    fig2 = plt.figure()
-    fiber.draw(fig2)
+    psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
+    psi_max = np.repeat(psi_max, init_points.shape[0])
+    for i, init_point in enumerate(init_points):
+        if init_point[2] == 0:
+            psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index) # pi/2 - theta_c
 
-    ray = Ray(np.array([0, 0, 0]), 0, np.pi/500)
-    fiber.propagate(ray, fig2, draw=True)
-    plt.show()
+    generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 1000)
+    ray1 = Ray(np.array([0, 0, 0]), 0, 0)
+    ray2 = Ray(np.array([0, 0, 0]), np.pi/4, np.pi/20)
+    fiber.propagate(ray1, fig, draw=True)
+    fiber.propagate(ray2, fig, draw=True)
+    # fiber.propagate(generated_rays[2], fig, draw=True)
 
-    # init_points = np.array([[0e-6, 0e-6, 0e-6], [0, 0, -50e-6]])
-    # # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
-    #
-    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
-    # psi_max = np.repeat(psi_max, init_points.shape[0])
-    # for i, init_point in enumerate(init_points):
-    #     if init_point[2] == 0:
-    #         psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index) # pi/2 - theta_c
-    #
-    # generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 100)
-    # final_points = fiber.propagate(generated_rays[0], fig1, draw=True)
     # for i in range(1, generated_rays.size):
-    #     final_points = fiber.propagate(generated_rays[i], fig1, draw=True)
-    #
-    # plt.show()
+    #     final_points = np.append(final_points, fiber.propagate(generated_rays[i], fig, draw=True))
+
+    plt.show()
     #
     # fig2 = plt.figure()
     # xs = final_points[:0]

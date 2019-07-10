@@ -89,8 +89,7 @@ class Fiber:
         psi_r = np.arcsin(self.surrounding_index / self.core_index * np.sin(ray.psi))
         return refracted_ray
 
-    def propagate(self, ray, fig, draw = False):
-        # TODO: return final positions of ray
+    def propagate(self, ray, fig, draw=False):
         propagated_ray = ray
         while propagated_ray.start[2] < self.length:
             if draw:
