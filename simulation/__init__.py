@@ -65,7 +65,7 @@ if __name__ == '__main__':
     ray1 = Ray(np.array([0, 0, 0]), 0, 0)
     ray2 = Ray(np.array([0, 0, 0]), np.pi/4, np.pi/20)
     # TODO: fix this too
-    end_point1 = fiber.propagate(ray1, fig, draw=True)
+    # end_point1 = fiber.propagate(ray1, fig, draw=True)
     end_point2 = fiber.propagate(ray2, fig, draw=True)
     # fiber.propagate(generated_rays[2], fig, draw=True)
 

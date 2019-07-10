@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08ccdd78-3289-4077-b87f-5b093672fbe8" name="Default Changelist" comment="">
+    <list default="true" id="08ccdd78-3289-4077-b87f-5b093672fbe8" name="Default Changelist" comment="Fixed buggy Ray object.">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ray_trace.py" beforeDir="false" afterPath="$PROJECT_DIR$/ray_trace.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulation/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulation/objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulation/objects.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +16,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ray_trace.py">
+        <entry file="file://$PROJECT_DIR$/simulation/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="194" column="26" selection-start-line="194" selection-start-column="26" selection-end-line="194" selection-end-column="26" />
+            <state relative-caret-position="181">
+              <caret line="76" column="25" lean-forward="true" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/simulation/objects.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="106" column="12" selection-start-line="106" selection-start-column="12" selection-end-line="106" selection-end-column="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -58,9 +71,9 @@
         <option value="$PROJECT_DIR$/helpers.py" />
         <option value="$PROJECT_DIR$/simulation/fibonacci_sphere_test" />
         <option value="$PROJECT_DIR$/simulation/fibonacci_sphere_test.py" />
-        <option value="$PROJECT_DIR$/simulation/objects.py" />
-        <option value="$PROJECT_DIR$/simulation/__init__.py" />
         <option value="$PROJECT_DIR$/ray_trace.py" />
+        <option value="$PROJECT_DIR$/simulation/__init__.py" />
+        <option value="$PROJECT_DIR$/simulation/objects.py" />
       </list>
     </option>
   </component>
@@ -83,7 +96,7 @@
             <path>
               <item name="simulation" type="b2602c69:ProjectViewProjectNode" />
               <item name="simulation" type="462c0819:PsiDirectoryNode" />
-              <item name="simulated_calibration" type="462c0819:PsiDirectoryNode" />
+              <item name="simulation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -117,7 +130,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ray_trace">
+  <component name="RunManager" selected="Python.__init__">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="simulation" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -208,8 +221,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ray_trace" />
         <item itemvalue="Python.__init__" />
+        <item itemvalue="Python.ray_trace" />
         <item itemvalue="Python.fibonacci_sphere_test" />
       </list>
     </recent_temporary>
@@ -226,7 +239,7 @@
       <updated>1561874898039</updated>
       <workItem from="1561876361080" duration="11147000" />
       <workItem from="1562022910169" duration="6334000" />
-      <workItem from="1562442460358" duration="99673000" />
+      <workItem from="1562442460358" duration="100194000" />
     </task>
     <task id="LOCAL-00001" summary="modified fibonacci_sphere  - calulate psi. Speed up by break at psi_max. Speed up by decrementing z.">
       <created>1561877940517</created>
@@ -389,11 +402,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562736180673</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Can save simulated calibration image given a set of x values of bead.">
+      <created>1562737109205</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1562737109205</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117154000" />
+    <option name="totallyTimeSpent" value="117675000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -405,23 +425,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1542811" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13662376" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32876712" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49928468" visible="true" weight="0.27534246" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" weight="0.23150685" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49928468" weight="0.23373494" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49928468" visible="true" weight="0.38072288" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32891566" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007153" side_tool="true" weight="0.2819277" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.29178083" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007153" side_tool="true" weight="0.30120483" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.29156625" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="R Graphics" order="0" />
@@ -429,9 +449,9 @@
       <window_info anchor="right" id="R Packages" order="2" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" sideWeight="0.22513089" side_tool="true" weight="0.3115016" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" sideWeight="0.22586207" side_tool="true" weight="0.2811159" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="SciView" order="7" sideWeight="0.7748691" visible="true" weight="0.26655897" />
+      <window_info anchor="right" id="SciView" order="7" sideWeight="0.7741379" visible="true" weight="0.2811159" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +482,8 @@
     <MESSAGE value="Testing multiple figures." />
     <MESSAGE value="Bug: Cannot visualize more than one ray propagation in plot." />
     <MESSAGE value="Bug: ray objects overwriting themselves." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug: ray objects overwriting themselves." />
+    <MESSAGE value="Can save simulated calibration image given a set of x values of bead." />
+    <option name="LAST_COMMIT_MESSAGE" value="Can save simulated calibration image given a set of x values of bead." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -484,16 +505,16 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simulation/__init__.py</url>
-          <line>67</line>
-          <option name="timeStamp" value="72" />
+          <line>64</line>
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/simulation$fibonacci_sphere_test.coverage" NAME="fibonacci_sphere_test Coverage Results" MODIFIED="1562646507203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulation" />
-    <SUITE FILE_PATH="coverage/simulation$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1562736363384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/simulation$ray_trace.coverage" NAME="ray_trace Coverage Results" MODIFIED="1562737044005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/simulation$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1562739220903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/mmf_simulation$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1562045241755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulation" />
   </component>
   <component name="debuggerHistoryManager">
@@ -601,10 +622,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulation/objects.py">
+    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/matplotlib/image.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="114" column="15" lean-forward="true" selection-start-line="114" selection-start-column="15" selection-end-line="114" selection-end-column="15" />
+        <state relative-caret-position="187">
+          <caret line="577" selection-start-line="577" selection-end-line="577" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulated_calibration/img0.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulated_calibration/img1.tiff">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ray_trace.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="200" column="51" selection-start-line="200" selection-start-column="51" selection-end-line="200" selection-end-column="51" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -613,37 +647,27 @@
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7138">
+        <state relative-caret-position="551">
           <caret line="1740" selection-start-line="1740" selection-end-line="1740" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulation/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="106" column="12" selection-start-line="106" selection-start-column="12" selection-end-line="106" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/simulation/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="181">
+          <caret line="76" column="25" lean-forward="true" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/CSC411_py2_env/lib/python2.7/site-packages/matplotlib/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="577" selection-start-line="577" selection-end-line="577" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simulated_calibration/img1.tiff">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ray_trace.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="194" column="26" selection-start-line="194" selection-start-column="26" selection-end-line="194" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -102,9 +102,9 @@ class Ray:
     # TODO: throw errors for invalid values
     def __init__(self, start=np.array([0, 0, 0]), theta=0, psi=0):
         # TODO: check that start is np array
-        Ray.start = start
-        Ray.theta = theta
-        Ray.psi = psi
+        self.start = start
+        self.theta = theta
+        self.psi = psi
 
     def draw(self, fig, final_point):
         xs = np.array([self.start[0], final_point[0]])
