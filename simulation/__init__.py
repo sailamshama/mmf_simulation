@@ -49,20 +49,24 @@ if __name__ == '__main__':
     fig = plt.figure()
     fiber.draw(fig)
 
-    init_points = np.array([[0e-6, 0e-6, 0e-6], [0, 0, -50e-6]])
-    # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
+    # init_points = np.array([[0e-6, 0e-6, 0e-6], [0, 0, -50e-6]])
+    # # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
+    #
+    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
+    # psi_max = np.repeat(psi_max, init_points.shape[0])
+    # for i, init_point in enumerate(init_points):
+    #     if init_point[2] == 0:
+    #         psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index) # pi/2 - theta_c
+    #
+    # generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 1000)
 
-    psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
-    psi_max = np.repeat(psi_max, init_points.shape[0])
-    for i, init_point in enumerate(init_points):
-        if init_point[2] == 0:
-            psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index) # pi/2 - theta_c
-
-    generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 1000)
+    # TODO: draw both ray propagations
+    # TODO: fix overwriting ray objects
     ray1 = Ray(np.array([0, 0, 0]), 0, 0)
     ray2 = Ray(np.array([0, 0, 0]), np.pi/4, np.pi/20)
-    fiber.propagate(ray1, fig, draw=True)
-    fiber.propagate(ray2, fig, draw=True)
+    # TODO: fix this too
+    end_point1 = fiber.propagate(ray1, fig, draw=True)
+    end_point2 = fiber.propagate(ray2, fig, draw=True)
     # fiber.propagate(generated_rays[2], fig, draw=True)
 
     # for i in range(1, generated_rays.size):
