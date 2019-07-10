@@ -74,6 +74,7 @@ class Fiber:
         return intersection
 
     def reflect(self, ray):
+        #TODO: make sure this takes into account TIR
         if ray.start[2] == self.length:
             return ray
         intersection = self.get_intersection(ray)
@@ -113,6 +114,8 @@ class Ray:
 
         ax = fig.gca(projection='3d')
         ax.plot(xs, ys, zs)
+        # TODO: live plot rays
+        # plt.pause(0.05)
 
     def length(self, final_point):
         return np.sqrt(sum((final_point - self.start) ** 2))
