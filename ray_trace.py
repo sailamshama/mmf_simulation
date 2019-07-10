@@ -189,13 +189,18 @@ def propagate_multithread(rays, ray_pos):
 if __name__ == '__main__':
 
     # for x in xra
-    point_source_location = np.array([0e-6, 0e-6, -0.000000001e-6])
-    xyz, rays = generate_rays(point_source_location, num_rays = 100)
-    # print('number of rays: ' + str(len(xyz)));
+    # xs = np.linspace(0, 100e-6, 2e-6)
+    xs = np.array([0, 50e-6])
 
-    final_positions = propagate_multithread(rays, xyz[:, :2])
-    heatmap, xedges, yedges = np.histogram2d(final_positions[:, 0], final_positions[:, 1], bins = 150)
-    extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
-    plt.imshow(heatmap.T, extent=extent, origin = 'lower')
-    plt.show()
-    plt.imsave(heatmap.T)
+    for i in range(xs.size):
+        point_source_location = np.array([0e-6, xs[i], -0.000000001e-6])
+        xyz, rays = generate_rays(point_source_location, num_rays=10000)
+        # print('number of rays: ' + str(len(xyz)));
+
+        final_positions = propagate_multithread(rays, xyz[:, :2])
+        heatmap, xedges, yedges = np.histogram2d(final_positions[:, 0], final_positions[:, 1], bins = 150)
+        extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
+        plt.imshow(heatmap.T, extent=extent, origin='lower')
+        # plt.show()
+        savedir = '/Users/Admin/Google Drive/Year4/Y4S3/ESC499 - Thesis/code/simulation/simulated_calibration/'
+        plt.imsave(savedir+'img'+str(i)+'.tiff', heatmap.T)
