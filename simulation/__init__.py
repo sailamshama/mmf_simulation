@@ -49,43 +49,35 @@ if __name__ == '__main__':
     fig = plt.figure()
     fiber.draw(fig)
 
-    # init_points = np.array([[0e-6, 0e-6, 0e-6], [0, 0, -50e-6]])
-    # # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
-    #
-    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
-    # psi_max = np.repeat(psi_max, init_points.shape[0])
-    # for i, init_point in enumerate(init_points):
-    #     if init_point[2] == 0:
-    #         psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index) # pi/2 - theta_c
-    #
-    # generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 1000)
+    init_points = np.array([[0e-6, 0e-6, 0e-6], [0, 0, -50e-6]])
+    # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
 
-    # TODO: draw both ray propagations
-    # TODO: fix overwriting ray objects
-    ray1 = Ray(np.array([0, 0, 0]), 0, 0)
-    ray2 = Ray(np.array([0, 0, 0]), np.pi/4, np.pi/20)
-    # TODO: fix this too
-    end_point1 = fiber.propagate(ray1, fig, draw=True)
-    end_point2 = fiber.propagate(ray2, fig, draw=True)
-    # fiber.propagate(generated_rays[2], fig, draw=True)
+    psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
+    psi_max = np.repeat(psi_max, init_points.shape[0])
+    for i, init_point in enumerate(init_points):
+        if init_point[2] == 0:
+            psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index) # pi/2 - theta_c
 
+    generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 1000)
+
+    final_positions = fiber.propagate(generated_rays[0], fig, draw=True)
+    for i in range(1, generated_rays.size):
+        final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))
     # for i in range(1, generated_rays.size):
     #     final_points = np.append(final_points, fiber.propagate(generated_rays[i], fig, draw=True))
 
     plt.show()
-    #
-    # fig2 = plt.figure()
-    # xs = final_points[:0]
-    # ys = final_points
-    # plt.hist2d(xs, ys)
-    # plt.show()
 
-    # end_points = np.array([])
-    # for ray in generated_rays: # TODO: watch out of infinite loop
-    #     while ray.start[2] < fiber.length:
-    #         reflected_ray = ray.reflected(fiber) # TODO: when reflected_ray.start > fiber.length
-    #         ray.draw(reflected_ray.start)
-    #         ray = reflected_ray
-    #     end_points.append(ray.start)
+    fig2 = plt.figure()
+    # xs = final_positions[:, 0]
+    # ys = final_positions[:, 1]
+    # plt.hist2d(xs, ys)
+    heatmap, xedges, yedges = np.histogram2d(final_positions[:, 0], final_positions[:, 1], bins=150)
+    extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
+    plt.imshow(heatmap.T, extent=extent, origin='lower')
+    plt.show()
+    savedir = '/Users/Admin/Google Drive/Year4/Y4S3/ESC499 - Thesis/code/simulation/simulated_calibration/'
+    plt.imsave(savedir + 'img' + str(i) + '.tiff', heatmap.T)
+
     t = 1
 

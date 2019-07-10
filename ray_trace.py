@@ -202,5 +202,5 @@ if __name__ == '__main__':
         extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
         plt.imshow(heatmap.T, extent=extent, origin='lower')
         # plt.show()
-        savedir = '/Users/Admin/Google Drive/Year4/Y4S3/ESC499 - Thesis/code/simulation/simulated_calibration/'
+        savedir = '/Users/Admin/Google Drive/Year4/Y4S3/ESC499 - Thesis/code/simulation/simulated_calibration_jack/'
         plt.imsave(savedir+'img'+str(i)+'.tiff', heatmap.T)

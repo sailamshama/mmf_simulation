@@ -8,7 +8,8 @@ class Fiber:
     core_index = 1.4630
     cladding_index = 1.45
     surrounding_index = 1
-    ellipse_a = 100e-6    # semi-major axis of fiber cross section #TODO: adjust this to core radius
+    # TODO: adjust this to core radius
+    ellipse_a = 100e-6    # semi-major axis of fiber cross section
     ellipse_b = 100e-6    # semi-minor axis of mmf cross section
     length = 12000e-6     # length of fiber in microns. 8000 um = 8 mm):
 
@@ -101,7 +102,6 @@ class Fiber:
 class Ray:
     # TODO: throw errors for invalid values
     def __init__(self, start=np.array([0, 0, 0]), theta=0, psi=0):
-        # TODO: check that start is np array
         self.start = start
         self.theta = theta
         self.psi = psi
