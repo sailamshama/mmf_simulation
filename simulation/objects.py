@@ -5,13 +5,13 @@ import math
 
 class Fiber:
     NA = 0.39             # Numerical Aperture
-    core_index = 1.4630
-    cladding_index = 1.45
+    core_index = 1.4589
+    cladding_index = 1.398200
     surrounding_index = 1
     # TODO: adjust this to core radius
     ellipse_a = 100e-6    # semi-major axis of fiber cross section
     ellipse_b = 100e-6    # semi-minor axis of mmf cross section
-    length = 12000e-6     # length of fiber in microns. 8000 um = 8 mm):
+    length = 12500e-6     # length of fiber in microns. 8000 um = 8 mm):
 
     # plot cylinder source: https://stackoverflow.com/questions/26989131/add-cylinder-to-plot
     # spherical tutorial: https://stackoverflow.com/questions/36816537/spherical-coordinates-plot-in-matplotlib

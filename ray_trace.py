@@ -137,7 +137,7 @@ def propagate_ray(ray, ray_pos, final_pos, index_num, fiber=mmf_fiber):
     return
 
 
-def propagate(rays, ray_pos, share_dict, index_num, fiber = mmf_fiber, trace=False):
+def propagate(rays, ray_pos, share_dict, index_num, fiber=mmf_fiber, trace=False):
 
     theta = xyz_transform_theta(rays)
     final_pos = np.zeros(ray_pos.shape)
@@ -152,6 +152,7 @@ def propagate(rays, ray_pos, share_dict, index_num, fiber = mmf_fiber, trace=Fal
         while True:
             xy_ray = norm(xy_ray)
 
+            # TODO; record xy_dist
             xy_dist, pos_ref, xy_ref_ray = chord(pos, xy_ray, mmf_fiber)
 
             if xy_dist / tan_theta > (fiber.length - z):

@@ -47,8 +47,9 @@ if __name__ == '__main__':
 
     fiber = Fiber()
     fig = plt.figure()
-    # fiber.draw(fig)
+    fiber.draw(fig)
 
+    # TODO: implement bead size by sampling initial positions from within size of bead
     init_points = np.array([[0e-6, 0e-6, 0e-6], [0, 0, -50e-6]])
     # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
 
@@ -59,7 +60,11 @@ if __name__ == '__main__':
         if init_point[2] == 0:
             psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index) #pi/2 - theta_c
 
-    generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 10000000)
+    generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 10000)
+
+    for i in range(generated_rays.size):
+        generated_rays[i].draw(fig, fiber.get_intersection(generated_rays[i]))
+    plt.show()
 
     final_positions = fiber.propagate(generated_rays[0], fig, draw=False)
     for i in range(1, generated_rays.size):
@@ -71,6 +76,8 @@ if __name__ == '__main__':
     #TODO: adjust bins
     heatmap, xedges, yedges = np.histogram2d(final_positions[:, 0], final_positions[:, 1], bins=150)
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
+    plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
+    plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
     plt.imshow(heatmap.T, extent=extent, origin='lower')
     plt.show()
     savedir = '/Users/Admin/Google Drive/Year4/Y4S3/ESC499 - Thesis/code/simulation/simulated_calibration/'
