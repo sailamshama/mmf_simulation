@@ -34,6 +34,7 @@ class Fiber:
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
+        ax.view_init(elev=0., azim=45)
 
     def get_intersection(self, ray):
         # case when ray entering from outside fiber
@@ -66,9 +67,9 @@ class Fiber:
         intersection[2] = zi + np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) / math.tan(ray.psi)
 
         if intersection[2] > self.length:
-            r = self.length / intersection[2]
-            intersection[0] = intersection[0] * r
-            intersection[1] = intersection[1] * r
+            r = (self.length - zi) / (intersection[2] - zi)
+            intersection[0] = (intersection[0] - xi) * r + xi
+            intersection[1] = (intersection[1] - yi) * r + yi
             intersection[2] = self.length
 
         return intersection
@@ -92,13 +93,14 @@ class Fiber:
         return refracted_ray
 
     def propagate(self, ray, fig, draw=False):
-        propagated_ray = ray
-        while propagated_ray.start[2] < self.length:
+        reflected_ray = ray
+        while reflected_ray.start[2] < self.length:
+            ray = reflected_ray
             if draw:
-                propagated_ray.draw(fig, self.get_intersection(propagated_ray))
-            propagated_ray = self.reflect(propagated_ray)
+                ray.draw(fig, self.get_intersection(reflected_ray))
+            reflected_ray = self.reflect(ray)
 
-        return propagated_ray.start
+        return ray.start
 
 class Ray:
     # TODO: throw errors for invalid values
