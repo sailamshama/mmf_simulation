@@ -34,19 +34,20 @@ class Fiber:
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
-        ax.view_init(elev=45., azim=45)
+        ax.view_init(elev=0, azim=0)
 
     def get_intersection(self, ray):
-        # case when ray entering from outside fiber
+        # TODO: case when ray entering from outside fiber
+        if ray.psi == 0:
+            return np.array([ray.start[0], ray.start[1], self.length])
+
         if ray.start[2] < 0:
+            #TODO: fix this - similar triangles
             r = - ray.start[2] * np.tan(ray.psi)
             x = r * np.cos(ray.theta)
             y = r * np.sin(ray.theta)
 
             return np.array([x, y, 0])
-
-        if ray.psi == 0:
-            return np.array([ray.start[0], ray.start[1], self.length])
 
         a = self.ellipse_a
         b = self.ellipse_b
@@ -69,6 +70,7 @@ class Fiber:
         intersection[1] = yi + temp4 * np.sin(t)
         intersection[2] = zi + np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) / math.tan(ray.psi)
 
+        #last ray case: similiar triangles argument
         if intersection[2] > self.length:
             r = (self.length - zi) / (intersection[2] - zi)
             intersection[0] = (intersection[0] - xi) * r + xi
@@ -76,10 +78,6 @@ class Fiber:
             intersection[2] = self.length
 
         return intersection
-
-    def get_tangent(self, intersection):
-        #TODO: implement this when dealing with elliptical cross section
-        pass
 
     def reflect(self, ray):
         #TODO: make sure this takes into account TIR
@@ -90,11 +88,8 @@ class Fiber:
         vertical_reflection_angle = np.arcsin((intersection[2] - ray.start[2]) / ray_length)
         psi_reflected_ray = np.pi / 2 - vertical_reflection_angle
 
-        c = np.sqrt(sum((ray.start[:2])**2))
-        a = np.sqrt(sum((intersection[:2] - ray.start[:2])**2))
-        b = np.sqrt(sum((intersection[:2])**2))
-        theta_x = (-b**2 / a**2) * (intersection[0]/intersection[1])
-        theta_reflected_ray = 2*theta_x - ray.theta + np.pi
+        theta_x = np.arctan2(-self.ellipse_b**2 * intersection[0], self.ellipse_a**2 * intersection[1])
+        theta_reflected_ray = 2*theta_x - ray.theta
 
         reflected_ray = Ray(start=intersection, theta=theta_reflected_ray, psi=psi_reflected_ray)
         return reflected_ray
@@ -134,6 +129,8 @@ class Ray:
         ax.plot(xs, ys, zs)
         # TODO: live plot rays
         # plt.pause(0.05)
+        # plt.close()
+        # plt.show()
 
     def length(self, final_point):
         return np.sqrt(sum((final_point - self.start) ** 2))

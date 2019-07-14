@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
     generated_rays = generate_rays_single_source(init_points[1], psi_max[1], 100000)
 
-    i = 341 #340
+    i =340
     # for i in range(generated_rays.size):
     generated_rays[i].draw(fig, fiber.get_intersection(generated_rays[i]))
 
