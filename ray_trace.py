@@ -193,9 +193,9 @@ if __name__ == '__main__':
     # xs = np.linspace(0, 100e-6, 2e-6)
     xs = np.array([0, 50e-6])
 
-    for i in range(xs.size):
+    for i in range(1, xs.size):
         point_source_location = np.array([0e-6, xs[i], -0.000000001e-6])
-        xyz, rays = generate_rays(point_source_location, num_rays=10000)
+        xyz, rays = generate_rays(point_source_location, num_rays=100000)
         # print('number of rays: ' + str(len(xyz)));
 
         final_positions = propagate_multithread(rays, xyz[:, :2])

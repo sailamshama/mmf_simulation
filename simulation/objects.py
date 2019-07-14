@@ -34,7 +34,7 @@ class Fiber:
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
-        ax.view_init(elev=0., azim=45)
+        ax.view_init(elev=45., azim=45)
 
     def get_intersection(self, ray):
         # case when ray entering from outside fiber
@@ -59,7 +59,10 @@ class Fiber:
         intersection = np.zeros([3])
         temp1 = ((b * np.cos(t)) ** 2 + (a * np.sin(t)) ** 2)
         temp2 = (a**2 * b**2) * (temp1 - (np.sin(t) * xi - np.cos(t) * yi) ** 2)
-        temp3 = np.sqrt(temp2)
+        if temp2 < 0:
+            temp3 = 0
+        else:
+            temp3 = np.sqrt(temp2)
         temp4 = (-b**2 * np.cos(t) * xi - a**2 * np.sin(t) * yi + temp3) / temp1
 
         intersection[0] = xi + temp4 * np.cos(t)
@@ -74,15 +77,26 @@ class Fiber:
 
         return intersection
 
+    def get_tangent(self, intersection):
+        #TODO: implement this when dealing with elliptical cross section
+        pass
+
     def reflect(self, ray):
         #TODO: make sure this takes into account TIR
         if ray.start[2] == self.length:
             return ray
         intersection = self.get_intersection(ray)
         ray_length = np.sqrt(np.sum((intersection - ray.start) ** 2))
-        reflection_angle = np.arcsin((intersection[2] - ray.start[2]) / ray_length)
-        psi_reflected_ray = np.pi / 2 - reflection_angle
-        reflected_ray = Ray(start=intersection, theta=ray.theta + math.pi, psi=psi_reflected_ray)
+        vertical_reflection_angle = np.arcsin((intersection[2] - ray.start[2]) / ray_length)
+        psi_reflected_ray = np.pi / 2 - vertical_reflection_angle
+
+        c = np.sqrt(sum((ray.start[:2])**2))
+        a = np.sqrt(sum((intersection[:2] - ray.start[:2])**2))
+        b = np.sqrt(sum((intersection[:2])**2))
+        theta_x = (-b**2 / a**2) * (intersection[0]/intersection[1])
+        theta_reflected_ray = 2*theta_x - ray.theta + np.pi
+
+        reflected_ray = Ray(start=intersection, theta=theta_reflected_ray, psi=psi_reflected_ray)
         return reflected_ray
 
     def refract(self, ray):
@@ -94,13 +108,15 @@ class Fiber:
 
     def propagate(self, ray, fig, draw=False):
         reflected_ray = ray
-        while reflected_ray.start[2] < self.length:
+        i = 0
+        while (reflected_ray.start[2] < self.length):# and (i < 20):
             ray = reflected_ray
             if draw:
                 ray.draw(fig, self.get_intersection(reflected_ray))
             reflected_ray = self.reflect(ray)
+            i += 1
 
-        return ray.start
+        return reflected_ray.start
 
 class Ray:
     # TODO: throw errors for invalid values

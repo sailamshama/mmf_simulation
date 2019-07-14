@@ -48,9 +48,9 @@ if __name__ == '__main__':
     fiber = Fiber()
     fig = plt.figure()
     fiber.draw(fig)
-
+    np.seterr(all='raise')
     # TODO: implement bead size by sampling initial positions from within size of bead
-    init_points = np.array([[0e-6, 0e-6, 0e-6], [0, 0, -50e-6]])
+    init_points = np.array([[0e-6, 0e-6, 0e-6], [50e-6, 0, 0e-6]])
     # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
 
     #TODO: find a better way to store psi_max
@@ -60,17 +60,17 @@ if __name__ == '__main__':
         if init_point[2] == 0:
             psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index) #pi/2 - theta_c
 
-    generated_rays = generate_rays_single_source(init_points[0], psi_max[0], 100000)
+    generated_rays = generate_rays_single_source(init_points[1], psi_max[1], 100000)
 
-    i = 200
+    i = 341 #340
     # for i in range(generated_rays.size):
     generated_rays[i].draw(fig, fiber.get_intersection(generated_rays[i]))
-    # plt.show()
 
 
     final_positions = fiber.propagate(generated_rays[i], fig, draw=True)
-    # for i in range(1, generated_rays.size):
-    #     final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=False)))
+    # for i in range(0, generated_rays.size):
+    #     final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))
+    # plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
     plt.show()
 
     # fig2 = plt.figure()
