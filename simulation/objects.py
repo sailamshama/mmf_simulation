@@ -1,7 +1,8 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import axes3d
-import math
+# import matplotlib.pyplot as plt
+# from mpl_toolkits.mplot3d import axes3d
+# import math
+
 
 class Fiber:
     NA = 0.39             # Numerical Aperture
@@ -21,7 +22,7 @@ class Fiber:
     z = np.linspace(0, length, 1000)
     theta_grid, z_grid = np.meshgrid(theta, z)
     # wikipedia page on ellipse: https://en.wikipedia.org/wiki/Ellipse#Polar_form_relative_to_center
-    r_grid = ellipse_a*ellipse_b / (np.sqrt((ellipse_b * np.cos(theta_grid)) ** 2 + (ellipse_a * np.sin(theta_grid))**2))
+    r_grid = ellipse_a*ellipse_b / (np.sqrt((ellipse_b * np.cos(theta_grid)) ** 2 + (ellipse_a*np.sin(theta_grid))**2))
     x_grid = r_grid * np.cos(theta_grid)
     y_grid = r_grid * np.sin(theta_grid)
 
@@ -34,7 +35,7 @@ class Fiber:
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
-        ax.view_init(elev=0, azim=0)
+        ax.view_init(elev=90, azim=0)
 
     def get_intersection(self, ray):
         # TODO: case when ray entering from outside fiber
@@ -42,7 +43,7 @@ class Fiber:
             return np.array([ray.start[0], ray.start[1], self.length])
 
         if ray.start[2] < 0:
-            #TODO: fix this - similar triangles
+            # TODO: fix this - similar triangles
             r = - ray.start[2] * np.tan(ray.psi)
             x = r * np.cos(ray.theta)
             y = r * np.sin(ray.theta)
@@ -68,9 +69,9 @@ class Fiber:
 
         intersection[0] = xi + temp4 * np.cos(t)
         intersection[1] = yi + temp4 * np.sin(t)
-        intersection[2] = zi + np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) / math.tan(ray.psi)
+        intersection[2] = zi + np.sqrt((intersection[0] - xi) ** 2 + (intersection[1] - yi) ** 2) / np.tan(ray.psi)
 
-        #last ray case: similiar triangles argument
+        # last ray case: similiar triangles argument
         if intersection[2] > self.length:
             r = (self.length - zi) / (intersection[2] - zi)
             intersection[0] = (intersection[0] - xi) * r + xi
@@ -80,7 +81,7 @@ class Fiber:
         return intersection
 
     def reflect(self, ray):
-        #TODO: make sure this takes into account TIR
+        # TODO: make sure this takes into account TIR
         if ray.start[2] == self.length:
             return ray
         intersection = self.get_intersection(ray)
@@ -96,7 +97,7 @@ class Fiber:
 
     def refract(self, ray):
         # TODO: test this with beads starting at z < 0
-        #check that ray.start[2] == 0
+        # check that ray.start[2] == 0
         refracted_ray = Ray(start=ray.start)
         psi_r = np.arcsin(self.surrounding_index / self.core_index * np.sin(ray.psi))
         return refracted_ray
@@ -104,7 +105,7 @@ class Fiber:
     def propagate(self, ray, fig, draw=False):
         reflected_ray = ray
         i = 0
-        while (reflected_ray.start[2] < self.length):# and (i < 20):
+        while reflected_ray.start[2] < self.length:  # and (i < 20):
             ray = reflected_ray
             if draw:
                 ray.draw(fig, self.get_intersection(reflected_ray))
@@ -112,6 +113,7 @@ class Fiber:
             i += 1
 
         return reflected_ray.start
+
 
 class Ray:
     # TODO: throw errors for invalid values
@@ -134,3 +136,10 @@ class Ray:
 
     def length(self, final_point):
         return np.sqrt(sum((final_point - self.start) ** 2))
+
+
+class Bead:
+
+    def __init__(self, position=np.array([0, 0, 0]), radius=5e-6):
+        self.position = position
+        self.radius = radius
