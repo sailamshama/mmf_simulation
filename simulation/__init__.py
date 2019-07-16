@@ -4,16 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def generate_rays_multiple_sources(initial_points, samples, psi_cutoff=math.pi):
+def generate_rays_multiple_sources(initial_points, psis_cutoff, samples):
     # TODO: test and debug this
-    rays_multiple_points = np.array([])
-    for initial_point in initial_points:
-        rays_single_point = generate_rays_single_source(initial_point, psi_cutoff, samples)
-        if np.size(rays_multiple_points) == 0:
-            rays_multiple_points = rays_single_point
-        else:
-            rays_multiple_points = np.vstack((rays_multiple_points, rays_single_point))
-    return rays_multiple_points
+    rays = np.array([])
+    for i in range(initial_points.shape[0]):
+        rays = np.append(rays, generate_rays_single_source(initial_points[i], psis_cutoff[i], samples))
+    return rays
 
 
 # Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
@@ -54,7 +50,7 @@ def create_image(end_points, savedir='./simulated_calibation/', draw=False):
     plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
     plt.imshow(heatmap.T, extent=extent, origin='lower')
     plt.show()
-    i = 1
+    i = 2
     plt.imsave(savedir + 'img_test_' + str(i) + '.tiff', heatmap.T)
     if draw:
         plt.show()
@@ -77,9 +73,9 @@ if __name__ == '__main__':
         if init_point[2] == 0:
             psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
 
-    generated_rays = generate_rays_single_source(init_points[3], psi_max[3], 10000000)
-
+    generated_rays = generate_rays_multiple_sources(init_points, psi_max, 100000)
     final_positions = fiber.propagate(generated_rays[i], fig, draw=False)
+
     for i in range(0, generated_rays.size):
         final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=False)))
     plt.show()
