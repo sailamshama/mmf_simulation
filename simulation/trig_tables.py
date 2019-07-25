@@ -1,28 +1,43 @@
 import numpy as np
 
+ANGLE_PRECISION = 0.001
 
-# TODO: use appropriate structure
+
 class TrigTable:
     # define precision
 
-    angles = np.linspace(0, np.pi * 2, 100000)
+    angles = np.arange(0, np.pi * 2, ANGLE_PRECISION)
+    count = np.shape(angles)[0]
+
     sines = np.sin(angles)
     cosines = np.cos(angles)
     tans = np.tan(angles)
 
-    sin_dict = dict(zip(angles, sines))
-    cos_dict = dict(zip(angles, cosines))
-    tan_dict = dict(zip(angles, tans))
+    @staticmethod
+    def sin(angle):
+        return TrigTable.sines[int(angle / ANGLE_PRECISION) % TrigTable.count]
 
-    # TODO implement efficient algorithm
-    def sin(self, angle):
-        nearest_angle_index = (np.abs(self.angles - np.repeat(angle, len(self.angles)))).argmin()
-        return self.sines[nearest_angle_index]
+    @staticmethod
+    def cos(angle):
+        return TrigTable.cosines[int(angle / ANGLE_PRECISION) % TrigTable.count]
 
-    def cos(self, angle):
-        nearest_angle_index = (np.abs(self.angles - np.repeat(angle, len(self.angles)))).argmin()
-        return self.cosines[nearest_angle_index]
+    @staticmethod
+    def tan(angle):
+        return TrigTable.tans[int(angle / ANGLE_PRECISION) % TrigTable.count]
 
-    def tan(self, angle):
-        nearest_angle_index = (np.abs(self.angles - np.repeat(angle, len(self.angles)))).argmin()
-        return self.tans[nearest_angle_index]
+
+if __name__ == '__main__':
+    import time
+
+    start = time.time()
+    for i in range(100):
+        np.sin(i)
+
+    end = time.time()
+    print(end-start)
+    start = time.time()
+    for i in range(100):
+        TrigTable.sin(i)
+    end = time.time()
+    print(end-start)
+

@@ -23,7 +23,7 @@ def generate_rays(init_pos, num_rays, fiber = mmf_fiber, mesh_density=50):
     origin = init_pos[:2]
 
     for i in r:
-        theta = np.linspace(0, 2 * np.pi, int(12 * mesh_density * i / r0), endpoint = False)
+        theta = np.linspace(0, 2 * np.pi, int(12 * mesh_density * i / r0), endpoint=False)
         t_space = theta[1] - theta[0]
         theta = theta + np.random.rand(len(theta)) * t_space - t_space / 2
         rmesh = i + np.random.rand(len(theta)) * r_space - r_space / 2

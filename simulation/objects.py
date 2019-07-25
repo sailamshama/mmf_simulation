@@ -1,8 +1,8 @@
 import numpy as np
 # import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
-# import math
-
+import math
+import random
 
 class Fiber:
     NA = 0.39             # Numerical Aperture
@@ -31,11 +31,11 @@ class Fiber:
         b = self.ellipse_b
         ax = fig.gca(projection='3d')
         ax.plot_surface(self.x_grid, self.y_grid, self.z_grid, alpha=0.1)
-        ax.set(xlim=(-1.5 * a, 1.5 * a), ylim=(-1.5 * b, 1.5 * b), zlim=(-100e-6, 1.2 * self.length))
+        ax.set(xlim=(-1.5 * a, 1.5 * a), ylim=(-1.5 * b, 1.5 * b), zlim=(-500e-6, 0.1 * self.length))
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
-        ax.view_init(elev=90, azim=0)
+        ax.view_init(elev=0, azim=90)
 
     def get_intersection(self, ray):
         # TODO: case when ray entering from outside fiber
@@ -45,8 +45,8 @@ class Fiber:
         if ray.start[2] < 0:
             # TODO: fix this - similar triangles
             r = - ray.start[2] * np.tan(ray.psi)
-            x = r * np.cos(ray.theta)
-            y = r * np.sin(ray.theta)
+            x = ray.start[0] + r * np.cos(ray.theta)
+            y = ray.start[1] + r * np.sin(ray.theta)
 
             return np.array([x, y, 0])
 
@@ -96,14 +96,20 @@ class Fiber:
         return reflected_ray
 
     def refract(self, ray):
-        # TODO: test this with beads starting at z < 0
         # check that ray.start[2] == 0
-        refracted_ray = Ray(start=ray.start)
-        psi_r = np.arcsin(self.surrounding_index / self.core_index * np.sin(ray.psi))
+        intersection = self.get_intersection(ray)
+        refracted_ray = Ray(np.array([intersection[0], intersection[1], intersection[2]]))
+
+        refracted_ray.psi = np.arcsin(self.surrounding_index / self.core_index * np.sin(ray.psi))
+        refracted_ray.theta = ray.theta
         return refracted_ray
 
     def propagate(self, ray, fig, draw=False):
-        reflected_ray = ray
+
+        if ray.start[2] < 0:
+            reflected_ray = self.refract(ray)
+        else:
+            reflected_ray = ray
         i = 0
         while reflected_ray.start[2] < self.length:  # and (i < 20):
             ray = reflected_ray
@@ -143,3 +149,42 @@ class Bead:
     def __init__(self, position=np.array([0, 0, 0]), radius=5e-6):
         self.position = position
         self.radius = radius
+
+    def generate_rays(self, psi_cutoff=math.pi, samples=100000):
+        # TODO: parallelize
+        r = self.radius
+
+        rnd = 1.
+        offset = 2. / samples
+        increment = math.pi * (3. - math.sqrt(5.))
+
+        # TODO: optimize this
+        rays = np.array([Ray(self.position) for i in range(samples)])
+
+        for i in range(samples):
+
+            z = - (((i * offset) - 1) + (offset / 2))
+            r = math.sqrt(1 - pow(z, 2))
+            psi = math.atan2(r, z)
+            if psi > psi_cutoff:  # zenith angle
+                rays = rays[:i]
+                break
+            theta = ((i + rnd) % samples) * increment  # azimuthal (projection) angle
+            rays[i].theta = theta
+            rays[i].psi = psi
+
+            while np.sqrt(sum(rays[:2]**2)) <= r:
+                rays[i].start[0] = self.position[0] + random.uniform(-r, r)
+                rays[i].start[1] = self.position[0] + random.uniform(-r, r)
+                
+        return rays
+
+    def draw(self, fig):
+        # TODO: draw rays out of bead and hitting bottom of fiber (assume ideal point size)
+        # TODO: draw rays post-refraction
+        # TODO: account for bead size (radius)
+        # TODO: implement finite bead size
+        # TODO: implement period rays acceleration
+        # TODO: accelerate on GPU
+        ax = fig.gca(projection='3d')
+
