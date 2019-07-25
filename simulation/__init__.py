@@ -4,8 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import time
 
-BEAD_SIZE = 2e-3
-
 
 def generate_rays_multiple_sources(initial_points, bead_sizes, psis_cutoff, samples):
     rays = np.array([])
@@ -66,42 +64,34 @@ if __name__ == '__main__':
     fiber.draw(fig)
 
     # TODO: implement bead size by sampling initial positions from within size of bead
-    # init_points = np.array([
-    #     # [0e-6, 0e-6, 0e-6],
-    #     [0, 50e-6, -50e-6],
-    #     # [75e-6, 0, 0],
-    #     # [10e-6, 0, 0]
-    # ])
+    init_points = np.array([
+        # [0e-6, 0e-6, 0e-6],
+        [0, 50e-6, -50e-6],
+        # [75e-6, 0, 0],
+        # [10e-6, 0, 0]
+    ])
 
-    # bead_sizes = np.repeat(BEAD_SIZE, init_points.shape[0])
-    # # TODO: find a better way to store psi_max
-    # # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
-    psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
-    # psi_max = np.repeat(psi_max, init_points.shape[0])
-    # for i, init_point in enumerate(init_points):
-    #     if init_point[2] == 0:
-    #         psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
-    #
-    # nums = int(3e3)
-    # generated_rays = generate_rays_multiple_sources(init_points, bead_sizes, psi_max, nums)
+    # TODO: find a better way to store psi_max
+    # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
+    psi_max = np.arcsin(fiber.NA)
+    psi_max = np.repeat(psi_max, init_points.shape[0])
+    for i, init_point in enumerate(init_points):
+        if init_point[2] == 0:
+            psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
 
-    sample_ray = Ray(np.array([0, 0, -300e-6]), 0, np.pi/4)
-    refracted_ray = fiber.refract(sample_ray)
-    sample_ray.draw(fig, refracted_ray.start)
-    reflected_ray = fiber.reflect(refracted_ray)
-    refracted_ray.draw(fig, reflected_ray.start)
-    plt.show()
+    nums = int(3e3)
+    generated_rays = generate_rays_multiple_sources(init_points, bead_sizes, psi_max, nums)
 
     fiber.propagate(refracted_ray, fig, draw=True)  # TODO: set psi limit for beads outside fiber
-    # final_positions = fiber.propagate(generated_rays[0], fig, draw=True)
-    # for i in range(1, generated_rays.size):
-    #     final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))
-    #     if ((i - 1) * 100) % generated_rays.size > (i * 100) % generated_rays.size:
-    #         print('progress: ', int((i / generated_rays.size) / 0.01), '%')
+    final_positions = fiber.propagate(generated_rays[0], fig, draw=True)
+    for i in range(1, generated_rays.size):
+        final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))
+        if ((i - 1) * 100) % generated_rays.size > (i * 100) % generated_rays.size:
+            print('progress: ', int((i / generated_rays.size) / 0.01), '%')
     plt.show()
 
-    # savedir = '/Users/Admin/Google Drive/Year4/Y4S3/ESC499 - Thesis/code/simulation/simulated_calibration/'
-    # create_image(end_points=final_positions, savedir=savedir, draw=True)
+    savedir = '/Users/Admin/Google Drive/Year4/Y4S3/ESC499 - Thesis/code/simulation/simulated_calibration/'
+    create_image(end_points=final_positions, savedir=savedir, draw=True)
 
     end = time.time()
     print("Simulation time: ", end-start)

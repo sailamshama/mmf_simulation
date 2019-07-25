@@ -1,8 +1,10 @@
+import time
 import numpy as np
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 import math
 import random
+
 
 class Fiber:
     NA = 0.39             # Numerical Aperture
@@ -38,12 +40,11 @@ class Fiber:
         ax.view_init(elev=0, azim=90)
 
     def get_intersection(self, ray):
-        # TODO: case when ray entering from outside fiber
+
         if ray.psi == 0:
             return np.array([ray.start[0], ray.start[1], self.length])
 
         if ray.start[2] < 0:
-            # TODO: fix this - similar triangles
             r = - ray.start[2] * np.tan(ray.psi)
             x = ray.start[0] + r * np.cos(ray.theta)
             y = ray.start[1] + r * np.sin(ray.theta)
@@ -81,7 +82,7 @@ class Fiber:
         return intersection
 
     def reflect(self, ray):
-        # TODO: make sure this takes into account TIR
+
         if ray.start[2] == self.length:
             return ray
         intersection = self.get_intersection(ray)
@@ -146,7 +147,7 @@ class Ray:
 
 class Bead:
 
-    def __init__(self, position=np.array([0, 0, 0]), radius=5e-6):
+    def __init__(self, radius=5e-6, position=np.array([0, 0, 0])):
         self.position = position
         self.radius = radius
 
@@ -176,7 +177,7 @@ class Bead:
             while np.sqrt(sum(rays[:2]**2)) <= r:
                 rays[i].start[0] = self.position[0] + random.uniform(-r, r)
                 rays[i].start[1] = self.position[0] + random.uniform(-r, r)
-                
+
         return rays
 
     def draw(self, fig):
@@ -188,3 +189,75 @@ class Bead:
         # TODO: accelerate on GPU
         ax = fig.gca(projection='3d')
 
+
+###### TESTS ######
+
+
+def test_refract():
+    fiber = Fiber()
+    fig = plt.figure()
+    fiber.draw(fig)
+
+    init_points = np.array([
+        # [0e-6, 0e-6, 0e-6],
+        [0, 50e-6, -50e-6],
+        # [75e-6, 0, 0],
+        # [10e-6, 0, 0]
+    ])
+
+    # TODO: find a better way to store psi_max
+    # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
+    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
+    psi_max = np.arcsin(fiber.NA)
+    psi_max = np.repeat(psi_max, init_points.shape[0])
+    for i, init_point in enumerate(init_points):
+        if init_point[2] == 0:
+            psi_max[i] = np.pi / 2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
+
+    nums = int(3e3)
+    generated_rays = generate_rays_multiple_sources(init_points, bead_sizes, psi_max, nums)
+
+
+    sample_ray = Ray(np.array([0, 0, -300e-6]), 0, np.pi/20)
+    refracted_ray = fiber.refract(sample_ray)
+    sample_ray.draw(fig, refracted_ray.start)
+    reflected_ray = fiber.reflect(refracted_ray)
+    refracted_ray.draw(fig, reflected_ray.start)
+
+    fiber.propagate(refracted_ray, fig, draw=True)
+
+    plt.show()
+
+
+
+def test_bead():
+    fiber = Fiber()
+    fig = plt.figure()
+    fiber.draw(fig)
+
+    init_points = np.array([
+        # [0e-6, 0e-6, 0e-6],
+        [0, 50e-6, -50e-6],
+        # [75e-6, 0, 0],
+        # [10e-6, 0, 0]
+    ])
+
+    BEAD_SIZE = 2e-3
+    bead_sizes = np.repeat(BEAD_SIZE, init_points.shape[0])
+    psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
+
+
+    pass
+
+def test_psi():
+    fiber = Fiber()
+    psi_out = np.arcsin(fiber.NA)
+    psi_in = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index)
+
+    return psi_in < psi_out
+
+if __name__ == "__main__":
+    BEAD_SIZE = 2e-3
+
+
+    # test_refract()
