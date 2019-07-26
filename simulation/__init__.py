@@ -14,6 +14,7 @@ def generate_rays_multiple_sources(initial_points, bead_sizes, psis_cutoff, samp
 
 # Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
 def generate_rays_single_source(initial_point, bead_size, psi_cutoff=math.pi, samples=100000):
+    # TODO: deal with out of fiber case when z < 0
     # TODO: parallelize
     rnd = 1.
     offset = 2. / samples
@@ -34,11 +35,6 @@ def generate_rays_single_source(initial_point, bead_size, psi_cutoff=math.pi, sa
         rays[i].psi = psi
 
     return rays
-
-
-def probe_lengths(rays):
-    # plot histogram of lengths of rays reflected within the fiber to see if there's a pattern
-    pass
 
 
 def create_image(end_points, savedir='./simulated_calibation/', draw=False):
@@ -63,12 +59,11 @@ if __name__ == '__main__':
     fig = plt.figure()
     fiber.draw(fig)
 
-    # TODO: implement bead size by sampling initial positions from within size of bead
     init_points = np.array([
-        # [0e-6, 0e-6, 0e-6],
+        [0e-6, 0e-6, 0e-6],
         [0, 50e-6, -50e-6],
-        # [75e-6, 0, 0],
-        # [10e-6, 0, 0]
+        [75e-6, 0, 0],
+        [10e-6, 0, 0]
     ])
 
     # TODO: find a better way to store psi_max
@@ -82,7 +77,7 @@ if __name__ == '__main__':
     nums = int(3e3)
     generated_rays = generate_rays_multiple_sources(init_points, bead_sizes, psi_max, nums)
 
-    fiber.propagate(refracted_ray, fig, draw=True)  # TODO: set psi limit for beads outside fiber
+    fiber.propagate(refracted_ray, fig, draw=True)
     final_positions = fiber.propagate(generated_rays[0], fig, draw=True)
     for i in range(1, generated_rays.size):
         final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))

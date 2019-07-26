@@ -31,15 +31,16 @@ class Fiber:
     def draw(self, fig):
         a = self.ellipse_a
         b = self.ellipse_b
+        l = self.length
         ax = fig.gca(projection='3d')
         ax.plot_surface(self.x_grid, self.y_grid, self.z_grid, alpha=0.1)
-        ax.set(xlim=(-1.5 * a, 1.5 * a), ylim=(-1.5 * b, 1.5 * b), zlim=(-500e-6, 0.1 * self.length))
+        ax.set(xlim=(-1.2 * a, 1.2 * a), ylim=(-1.5 * b, 1.5 * b), zlim=(-10e-6, 10e-6))
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
         ax.view_init(elev=0, azim=90)
 
-    def get_intersection(self, ray):
+    def get_intersection(self, ray, fig, draw):
 
         if ray.psi == 0:
             return np.array([ray.start[0], ray.start[1], self.length])
@@ -48,8 +49,10 @@ class Fiber:
             r = - ray.start[2] * np.tan(ray.psi)
             x = ray.start[0] + r * np.cos(ray.theta)
             y = ray.start[1] + r * np.sin(ray.theta)
-
-            return np.array([x, y, 0])
+            intersection = np.array([x, y, 0])
+            if draw:
+                ray.draw(fig, intersection)
+            return intersection
 
         a = self.ellipse_a
         b = self.ellipse_b
@@ -79,13 +82,18 @@ class Fiber:
             intersection[1] = (intersection[1] - yi) * r + yi
             intersection[2] = self.length
 
+        if draw:
+            if intersection[2] <= self.length:
+                ray.draw(fig, intersection)
+
         return intersection
 
-    def reflect(self, ray):
+    def reflect(self, ray, fig, draw=False):
 
         if ray.start[2] == self.length:
             return ray
-        intersection = self.get_intersection(ray)
+        intersection = self.get_intersection(ray, fig, draw)
+
         ray_length = np.sqrt(np.sum((intersection - ray.start) ** 2))
         vertical_reflection_angle = np.arcsin((intersection[2] - ray.start[2]) / ray_length)
         psi_reflected_ray = np.pi / 2 - vertical_reflection_angle
@@ -96,31 +104,45 @@ class Fiber:
         reflected_ray = Ray(start=intersection, theta=theta_reflected_ray, psi=psi_reflected_ray)
         return reflected_ray
 
-    def refract(self, ray):
-        # check that ray.start[2] == 0
-        intersection = self.get_intersection(ray)
+    def refract(self, ray, fig, draw=False):
+
+        # TODO: case when rays are outside fiber
+        # if (abs(ray.start[0]) > self.ellipse_a) or (abs(ray.start[1]) > self.ellipse_b):
+        #     pass
+
+        intersection = self.get_intersection(ray, fig, draw)
         refracted_ray = Ray(np.array([intersection[0], intersection[1], intersection[2]]))
 
         refracted_ray.psi = np.arcsin(self.surrounding_index / self.core_index * np.sin(ray.psi))
         refracted_ray.theta = ray.theta
+
         return refracted_ray
 
-    def propagate(self, ray, fig, draw=False):
+    def propagate(self, ray, fig, draw=False, log_lengths=False):
+        # TODO: debug log lengths
+        if log_lengths:
+            lengths = np.array([])
 
         if ray.start[2] < 0:
-            reflected_ray = self.refract(ray)
+            reflected_ray = self.refract(ray, fig, draw)
+            if log_lengths:
+                lengths = np.append(lengths, np.sqrt((reflected_ray.start - ray.start)**2))
         else:
             reflected_ray = ray
         i = 0
+
         while reflected_ray.start[2] < self.length:  # and (i < 20):
             ray = reflected_ray
-            if draw:
-                ray.draw(fig, self.get_intersection(reflected_ray))
-            reflected_ray = self.reflect(ray)
+            reflected_ray = self.reflect(ray, fig, draw)
+            if log_lengths:
+                lengths = np.append(lengths, np.sqrt((reflected_ray.start - ray.start)**2))
             i += 1
 
-        return reflected_ray.start
+        if log_lengths:
+            return reflected_ray.start, lengths
 
+        else:
+            return reflected_ray.start
 
 class Ray:
     # TODO: throw errors for invalid values
@@ -152,9 +174,9 @@ class Bead:
         self.radius = radius
 
     def generate_rays(self, psi_cutoff=math.pi, samples=100000):
+        # TODO: deal with out of fiber case when z < 0
         # TODO: parallelize
         r = self.radius
-
         rnd = 1.
         offset = 2. / samples
         increment = math.pi * (3. - math.sqrt(5.))
@@ -174,15 +196,17 @@ class Bead:
             rays[i].theta = theta
             rays[i].psi = psi
 
-            while np.sqrt(sum(rays[:2]**2)) <= r:
-                rays[i].start[0] = self.position[0] + random.uniform(-r, r)
-                rays[i].start[1] = self.position[0] + random.uniform(-r, r)
+            rx, ry = r+1, r+1
+            while np.sqrt(rx**2 + ry**2) > r:
+                # generate random r's until position is within bead
+                rx = random.uniform(-r, r)
+                ry = random.uniform(-r, r)
+            rays[i].start[0] = self.position[0] + random.uniform(-r, r)
+            rays[i].start[1] = self.position[0] + random.uniform(-r, r)
 
         return rays
 
     def draw(self, fig):
-        # TODO: draw rays out of bead and hitting bottom of fiber (assume ideal point size)
-        # TODO: draw rays post-refraction
         # TODO: account for bead size (radius)
         # TODO: implement finite bead size
         # TODO: implement period rays acceleration
@@ -192,6 +216,35 @@ class Bead:
 
 ###### TESTS ######
 
+def generate_rays_multiple_sources(initial_points, psis_cutoff, samples):
+    rays = np.array([])
+    for i in range(initial_points.shape[0]):
+        rays = np.append(rays, generate_rays_single_source(initial_points[i], psis_cutoff[i], samples))
+    return rays
+
+
+# Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
+def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=100000):
+    # TODO: parallelize
+    rnd = 1.
+    offset = 2. / samples
+    increment = math.pi * (3. - math.sqrt(5.))
+
+    # TODO: optimize this
+    rays = np.array([Ray(initial_point) for i in range(samples)])
+
+    for i in range(samples):
+        z = - (((i * offset) - 1) + (offset / 2))
+        r = math.sqrt(1 - pow(z, 2))
+        psi = math.atan2(r, z)
+        if psi > psi_cutoff:  # zenith angle
+            rays = rays[:i]
+            break
+        theta = ((i + rnd) % samples) * increment  # azimuthal (projection) angle
+        rays[i].theta = theta
+        rays[i].psi = psi
+
+    return rays
 
 def test_refract():
     fiber = Fiber()
@@ -200,10 +253,11 @@ def test_refract():
 
     init_points = np.array([
         # [0e-6, 0e-6, 0e-6],
-        [0, 50e-6, -50e-6],
+        [99e-6, 0e-6, -10e-6],
         # [75e-6, 0, 0],
         # [10e-6, 0, 0]
     ])
+
 
     # TODO: find a better way to store psi_max
     # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
@@ -214,20 +268,27 @@ def test_refract():
         if init_point[2] == 0:
             psi_max[i] = np.pi / 2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
 
+
     nums = int(3e3)
-    generated_rays = generate_rays_multiple_sources(init_points, bead_sizes, psi_max, nums)
+    generated_rays = generate_rays_multiple_sources(init_points, psi_max, nums)
 
+    # psi_max = np.pi / 2 - np.arcsin(fiber.cladding_index / fiber.core_index)
+    # sample_ray = Ray(np.array([0, 0, -10e-6]), 0, psi_max)
+    # refracted_ray = fiber.refract(sample_ray, fig, draw=True)
+    # reflected_ray = fiber.reflect(refracted_ray, fig, draw=True)
+    # fiber.propagate(refracted_ray, fig, draw=True)
 
-    sample_ray = Ray(np.array([0, 0, -300e-6]), 0, np.pi/20)
-    refracted_ray = fiber.refract(sample_ray)
-    sample_ray.draw(fig, refracted_ray.start)
-    reflected_ray = fiber.reflect(refracted_ray)
-    refracted_ray.draw(fig, reflected_ray.start)
+    for i in range(generated_rays.size):
+        fiber.refract(generated_rays[i], fig, draw=True)
 
-    fiber.propagate(refracted_ray, fig, draw=True)
+    # final_positions = fiber.propagate(generated_rays[0], fig, draw=True)
+    # for i in range(1, generated_rays.size):
+    #     final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))
+    #     if ((i - 1) * 100) % generated_rays.size > (i * 100) % generated_rays.size:
+    #         print('progress: ', int((i / generated_rays.size) / 0.01), '%')
 
     plt.show()
-
+    t = 1
 
 
 def test_bead():
@@ -237,17 +298,16 @@ def test_bead():
 
     init_points = np.array([
         # [0e-6, 0e-6, 0e-6],
-        [0, 50e-6, -50e-6],
+        [0, 50e-6, -10e-6],
         # [75e-6, 0, 0],
         # [10e-6, 0, 0]
     ])
 
-    BEAD_SIZE = 2e-3
+    BEAD_SIZE = 2e-6
     bead_sizes = np.repeat(BEAD_SIZE, init_points.shape[0])
     psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
 
 
-    pass
 
 def test_psi():
     fiber = Fiber()
@@ -256,8 +316,20 @@ def test_psi():
 
     return psi_in < psi_out
 
+
+def probe_lengths():
+    # plot histogram of lengths of rays reflected within the fiber to see if there's a pattern
+
+    fiber = Fiber()
+    fig = plt.figure()
+    fiber.draw(fig)
+
+    psi_max = np.pi / 2 - np.arcsin(fiber.cladding_index / fiber.core_index)
+    sample_ray = Ray(np.array([0, 0, -10e-6]), 0, psi_max)
+    final_pos, lengths = fiber.propagate(sample_ray, fig, draw=True, log_lengths=False)
+    plt.draw()
+    t = 1
+
 if __name__ == "__main__":
-    BEAD_SIZE = 2e-3
 
-
-    # test_refract()
+    probe_lengths()
