@@ -34,7 +34,7 @@ class Fiber:
         l = self.length
         ax = fig.gca(projection='3d')
         ax.plot_surface(self.x_grid, self.y_grid, self.z_grid, alpha=0.1)
-        ax.set(xlim=(-1.2 * a, 1.2 * a), ylim=(-1.5 * b, 1.5 * b), zlim=(-10e-6, 10e-6))
+        ax.set(xlim=(-1.2 * a, 1.2 * a), ylim=(-1.5 * b, 1.5 * b), zlim=(-100e-6, 50e-6))
         ax.set_xlabel("X")
         ax.set_ylabel("Y")
         ax.set_zlabel("Z")
@@ -139,10 +139,11 @@ class Fiber:
             i += 1
 
         if log_lengths:
-            return reflected_ray.start, lengths
+            return (reflected_ray.start, lengths)
 
         else:
             return reflected_ray.start
+
 
 class Ray:
     # TODO: throw errors for invalid values
@@ -183,7 +184,7 @@ class Bead:
 
         # TODO: optimize this
         rays = np.array([Ray(self.position) for i in range(samples)])
-
+        # TODO: generate sample # points on top top half of hemisphere
         for i in range(samples):
 
             z = - (((i * offset) - 1) + (offset / 2))
@@ -207,24 +208,43 @@ class Bead:
         return rays
 
     def draw(self, fig):
-        # TODO: account for bead size (radius)
-        # TODO: implement finite bead size
-        # TODO: implement period rays acceleration
-        # TODO: accelerate on GPU
-        ax = fig.gca(projection='3d')
+        pass
 
 
-###### TESTS ######
+def points_on_hemisphere(center, samples=10000):
+    rnd = 1.
+    offset = 2. / samples
+    increment = math.pi * (3. - math.sqrt(5.))
 
-def generate_rays_multiple_sources(initial_points, psis_cutoff, samples):
+    points = np.zeros((samples, 3))
+
+    i = 0
+    while i <= samples:
+        z = - (((i * offset) - 1) + (offset / 2))
+        r = math.sqrt(1 - pow(z, 2))
+        theta = ((i + rnd) % samples) * increment  # azimuthal (projection) angle
+        psi = math.atan2(r, z)
+        points[i] = np.array([r*np.cos(theta), r*np.sin(theta), z])
+    return points
+
+
+# TESTS
+# TODO: combine multiple sources and single sources into one function
+def generate_rays(initial_points, fiber, samples=100000):
     rays = np.array([])
     for i in range(initial_points.shape[0]):
-        rays = np.append(rays, generate_rays_single_source(initial_points[i], psis_cutoff[i], samples))
+        rays = np.append(rays, generate_rays_single_source(initial_points[i], fiber, samples))
     return rays
 
 
 # Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
-def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=100000):
+def generate_rays_single_source(initial_point, fiber, samples=100000):
+    a = fiber.ellipse_a
+    b = fiber.ellipse_b
+    if initial_point[2] < 0:
+        psi_cutoff = np.pi / 2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
+    else:
+        psi_cutoff = np.arcsin(fiber.NA)
     # TODO: parallelize
     rnd = 1.
     offset = 2. / samples
@@ -233,18 +253,48 @@ def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=10000
     # TODO: optimize this
     rays = np.array([Ray(initial_point) for i in range(samples)])
 
-    for i in range(samples):
+    i = 0
+    while i <= samples:
         z = - (((i * offset) - 1) + (offset / 2))
         r = math.sqrt(1 - pow(z, 2))
+        theta = ((i + rnd) % samples) * increment  # azimuthal (projection) angle
         psi = math.atan2(r, z)
         if psi > psi_cutoff:  # zenith angle
             rays = rays[:i]
             break
-        theta = ((i + rnd) % samples) * increment  # azimuthal (projection) angle
-        rays[i].theta = theta
         rays[i].psi = psi
+        rays[i].theta = theta
 
+        # TODO: move this condition inside refract
+        if initial_point[2] < 0:
+            r = - rays[i].start[2] * np.tan(rays[i].psi)
+            x = rays[i].start[0] + r * np.cos(rays[i].theta)
+            y = rays[i].start[1] + r * np.sin(rays[i].theta)
+
+            # assuming ellipse is centered at (0, 0)
+            if (x**2/a**2) + (y**2/b**2) > 1:
+                i -= 1  # overwrite (essentially discard) this ray in next iteration
+                samples -= 1
+        i += 1
+    rays = rays[:i]  # discard all initialized rays after break index
     return rays
+
+
+def test_generate_rays():
+    fiber = Fiber()
+    fig = plt.figure()
+    fiber.draw(fig)
+
+    initial_point = np.array([[99.5e-6, 0, -30e-6],
+                              # [90e-6, 0, -30e-6]
+                              ])
+
+    rays = generate_rays(initial_point, fiber, int(1e6))
+
+    for i in range(rays.size):
+        fiber.refract(rays[i], fig, draw=True)
+    plt.show()
+
 
 def test_refract():
     fiber = Fiber()
@@ -253,15 +303,13 @@ def test_refract():
 
     init_points = np.array([
         # [0e-6, 0e-6, 0e-6],
-        [99e-6, 0e-6, -10e-6],
+        [95e-6, 0e-6, -30e-6],
         # [75e-6, 0, 0],
         # [10e-6, 0, 0]
     ])
 
-
     # TODO: find a better way to store psi_max
     # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
-    # psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
     psi_max = np.arcsin(fiber.NA)
     psi_max = np.repeat(psi_max, init_points.shape[0])
     for i, init_point in enumerate(init_points):
@@ -270,17 +318,17 @@ def test_refract():
 
 
     nums = int(3e3)
-    generated_rays = generate_rays_multiple_sources(init_points, psi_max, nums)
+    generated_rays = generate_rays(init_points, psi_max, nums)
 
     # psi_max = np.pi / 2 - np.arcsin(fiber.cladding_index / fiber.core_index)
-    # sample_ray = Ray(np.array([0, 0, -10e-6]), 0, psi_max)
+    # sample_ray = Ray(np.array([99e-6, 0, -100e-6]), 0, psi_max)
     # refracted_ray = fiber.refract(sample_ray, fig, draw=True)
     # reflected_ray = fiber.reflect(refracted_ray, fig, draw=True)
     # fiber.propagate(refracted_ray, fig, draw=True)
 
     for i in range(generated_rays.size):
-        fiber.refract(generated_rays[i], fig, draw=True)
-
+        # fiber.refract(generated_rays[i], fig, draw=True)
+        fiber.propagate(generated_rays[i], fig, draw=True)
     # final_positions = fiber.propagate(generated_rays[0], fig, draw=True)
     # for i in range(1, generated_rays.size):
     #     final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))
@@ -308,7 +356,6 @@ def test_bead():
     psi_max = np.arcsin(fiber.surrounding_index * fiber.NA / fiber.core_index)
 
 
-
 def test_psi():
     fiber = Fiber()
     psi_out = np.arcsin(fiber.NA)
@@ -326,10 +373,47 @@ def probe_lengths():
 
     psi_max = np.pi / 2 - np.arcsin(fiber.cladding_index / fiber.core_index)
     sample_ray = Ray(np.array([0, 0, -10e-6]), 0, psi_max)
-    final_pos, lengths = fiber.propagate(sample_ray, fig, draw=True, log_lengths=False)
-    plt.draw()
+    final_pos, lengths = fiber.propagate(sample_ray, fig, draw=True, log_lengths=True)
+    plt.show()
     t = 1
+
+
+def test_propagate():
+    fiber = Fiber()
+    fig = plt.figure()
+    fiber.draw(fig)
+
+    init_points = np.array([
+        # [0e-6, 0e-6, 0e-6],
+        [0, 50e-6, -10e-6],
+        # [75e-6, 0, 0],
+        # [10e-6, 0, 0]
+    ])
+
+    psi_max = np.arcsin(fiber.NA)
+    psi_max = np.repeat(psi_max, init_points.shape[0])
+    for i, init_point in enumerate(init_points):
+        if init_point[2] == 0:
+            psi_max[i] = np.pi / 2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
+
+    nums = int(1e6)
+    generated_rays = generate_rays(init_points, psi_max, nums)
+    final_positions = fiber.propagate(generated_rays[0], fig, draw=True)
+    for i in range(1, generated_rays.size):
+        final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))
+        if ((i - 1) * 100) % generated_rays.size > (i * 100) % generated_rays.size:
+            print('progress: ', int((i / generated_rays.size) / 0.01), '%')
+
+    plt.figure()
+    heatmap, xedges, yedges = np.histogram2d(final_positions[:, 0], final_positions[:, 1], bins=150)
+    extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
+    plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
+    plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
+    plt.imshow(heatmap.T, extent=extent, origin='lower')
+
+    plt.show()
+
 
 if __name__ == "__main__":
 
-    probe_lengths()
+    test_generate_rays()
