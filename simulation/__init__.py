@@ -3,17 +3,19 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+# TODO: implement period rays acceleration
+# TODO: accelerate on GPU
 
 
-def generate_rays_multiple_sources(initial_points, bead_sizes, psis_cutoff, samples):
+def generate_rays_multiple_sources(initial_points, psis_cutoff, samples):
     rays = np.array([])
     for i in range(initial_points.shape[0]):
-        rays = np.append(rays, generate_rays_single_source(initial_points[i], bead_sizes[i], psis_cutoff[i], samples))
+        rays = np.append(rays, generate_rays_single_source(initial_points[i], psis_cutoff[i], samples))
     return rays
 
 
 # Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
-def generate_rays_single_source(initial_point, bead_size, psi_cutoff=math.pi, samples=100000):
+def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=100000):
     # TODO: deal with out of fiber case when z < 0
     # TODO: parallelize
     rnd = 1.
@@ -46,7 +48,7 @@ def create_image(end_points, savedir='./simulated_calibation/', draw=False):
     plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
     plt.imshow(heatmap.T, extent=extent, origin='lower')
     plt.show()
-    i = 5
+    i = 'middle'
     plt.imsave(savedir + 'img_test_' + str(i) + '.tiff', heatmap.T)
     if draw:
         plt.show()
@@ -60,10 +62,10 @@ if __name__ == '__main__':
     fiber.draw(fig)
 
     init_points = np.array([
-        [0e-6, 0e-6, 0e-6],
-        [0, 50e-6, -50e-6],
-        [75e-6, 0, 0],
-        [10e-6, 0, 0]
+        # [0e-6, 0e-6, 0e-6],
+        [0, 51e-6, -45e-6],
+        # [75e-6, 0, 0],
+        # [10e-6, 0, 0]
     ])
 
     # TODO: find a better way to store psi_max
@@ -74,13 +76,12 @@ if __name__ == '__main__':
         if init_point[2] == 0:
             psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
 
-    nums = int(3e3)
-    generated_rays = generate_rays_multiple_sources(init_points, bead_sizes, psi_max, nums)
+    nums = int(5e6)
+    generated_rays = generate_rays_multiple_sources(init_points, psi_max, nums)
 
-    fiber.propagate(refracted_ray, fig, draw=True)
-    final_positions = fiber.propagate(generated_rays[0], fig, draw=True)
+    final_positions = fiber.propagate(generated_rays[0], fig, draw=False)
     for i in range(1, generated_rays.size):
-        final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=True)))
+        final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=False)))
         if ((i - 1) * 100) % generated_rays.size > (i * 100) % generated_rays.size:
             print('progress: ', int((i / generated_rays.size) / 0.01), '%')
     plt.show()
