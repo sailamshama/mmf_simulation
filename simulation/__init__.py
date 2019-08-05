@@ -1,93 +1,56 @@
-from simulation.objects import Ray, Fiber
-import math
+from simulation.fiber import Ray, Fiber
+from os import getcwd
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-# TODO: implement period rays acceleration
-# TODO: accelerate on GPU
+from simulation.bead import Bead
+from mpl_toolkits.mplot3d import Axes3D
 
+DRAW = True
+FILENAME = 'mid'
+BIN_SIZE = 150
 
-def generate_rays_multiple_sources(initial_points, psis_cutoff, samples):
-    rays = np.array([])
-    for i in range(initial_points.shape[0]):
-        rays = np.append(rays, generate_rays_single_source(initial_points[i], psis_cutoff[i], samples))
-    return rays
-
-
-# Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
-def generate_rays_single_source(initial_point, psi_cutoff=math.pi, samples=100000):
-    # TODO: deal with out of fiber case when z < 0
-    # TODO: parallelize
-    rnd = 1.
-    offset = 2. / samples
-    increment = math.pi * (3. - math.sqrt(5.))
-
-    # TODO: optimize this
-    rays = np.array([Ray(initial_point) for i in range(samples)])
-
-    for i in range(samples):
-        z = - (((i * offset) - 1) + (offset / 2))
-        r = math.sqrt(1 - pow(z, 2))
-        psi = math.atan2(r, z)
-        if psi > psi_cutoff:  # zenith angle
-            rays = rays[:i]
-            break
-        theta = ((i + rnd) % samples) * increment  # azimuthal (projection) angle
-        rays[i].theta = theta
-        rays[i].psi = psi
-
-    return rays
-
-
-def create_image(end_points, savedir='./simulated_calibation/', draw=False):
+if __name__ == '__main__':
+    fig1 = plt.figure()
     fig2 = plt.figure()
-    # TODO: adjust bins
-    heatmap, xedges, yedges = np.histogram2d(end_points[:, 0], end_points[:, 1], bins=150)
+
+    start = time.time()
+
+    fiber = Fiber()
+    if DRAW:
+        fiber.draw(fig1)
+
+    beads = [
+        Bead(np.array([0e-6, 0e-6, 0e-6])),
+        Bead(np.array([0, 51e-6, -45e-6])),
+        Bead(np.array([75e-6, 0, 0])),
+        Bead(np.array([10e-6, 0, 0]))
+    ]
+
+    nums = int(1e6)
+    rays = np.array([])
+    for bead in beads:
+        rays = np.append(rays, bead.generate_rays(fiber, nums))
+        if DRAW:
+            bead.draw(fig1)
+
+    final_positions = fiber.propagate(rays[0], fig1, draw=False)
+    for i in range(1, rays.size):
+        final_positions = np.vstack((final_positions, fiber.propagate(rays[i], fig1, draw=False)))
+        if ((i - 1) * 100) % rays.size > (i * 100) % rays.size:
+            print('progress: ', int((i / rays.size) / 0.01), '%')
+    if DRAW:
+        fig1.show()
+
+    heatmap, xedges, yedges = np.histogram2d(final_positions[:, 0], final_positions[:, 1], bins=BIN_SIZE)
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
     plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
     plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
     plt.imshow(heatmap.T, extent=extent, origin='lower')
-    plt.show()
-    i = 'middle'
-    plt.imsave(savedir + 'img_test_' + str(i) + '.tiff', heatmap.T)
-    if draw:
-        plt.show()
-
-
-if __name__ == '__main__':
-    start = time.time()
-
-    fiber = Fiber()
-    fig = plt.figure()
-    fiber.draw(fig)
-
-    init_points = np.array([
-        # [0e-6, 0e-6, 0e-6],
-        [0, 51e-6, -45e-6],
-        # [75e-6, 0, 0],
-        # [10e-6, 0, 0]
-    ])
-
-    # TODO: find a better way to store psi_max
-    # https://circuitglobe.com/numerical-aperture-of-optical-fiber.html
-    psi_max = np.arcsin(fiber.NA)
-    psi_max = np.repeat(psi_max, init_points.shape[0])
-    for i, init_point in enumerate(init_points):
-        if init_point[2] == 0:
-            psi_max[i] = np.pi/2 - np.arcsin(fiber.cladding_index / fiber.core_index)  # pi/2 - theta_c
-
-    nums = int(5e6)
-    generated_rays = generate_rays_multiple_sources(init_points, psi_max, nums)
-
-    final_positions = fiber.propagate(generated_rays[0], fig, draw=False)
-    for i in range(1, generated_rays.size):
-        final_positions = np.vstack((final_positions, fiber.propagate(generated_rays[i], fig, draw=False)))
-        if ((i - 1) * 100) % generated_rays.size > (i * 100) % generated_rays.size:
-            print('progress: ', int((i / generated_rays.size) / 0.01), '%')
-    plt.show()
-
-    savedir = '/Users/Admin/Google Drive/Year4/Y4S3/ESC499 - Thesis/code/simulation/simulated_calibration/'
-    create_image(end_points=final_positions, savedir=savedir, draw=True)
+    # plt.imsave(getcwd() + '/simulated_calibration/' + 'img_test_' + FILENAME + '.tiff', heatmap.T)
+    if DRAW:
+        fig2.show()
 
     end = time.time()
+
     print("Simulation time: ", end-start)
