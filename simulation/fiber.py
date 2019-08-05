@@ -135,7 +135,7 @@ class Fiber:
             i += 1
 
         if log_lengths:
-            return (reflected_ray.start, lengths)
+            return reflected_ray.start, lengths
 
         else:
             return reflected_ray.start

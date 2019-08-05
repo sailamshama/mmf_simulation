@@ -6,7 +6,7 @@ import time
 from simulation.bead import Bead
 from mpl_toolkits.mplot3d import Axes3D
 
-DRAW = True
+DRAW = False
 FILENAME = 'mid'
 BIN_SIZE = 150
 
@@ -21,22 +21,22 @@ if __name__ == '__main__':
         fiber.draw(fig1)
 
     beads = [
-        Bead(np.array([0e-6, 0e-6, 0e-6])),
+        # Bead(np.array([0e-6, 0e-6, 0e-6])),
         Bead(np.array([0, 51e-6, -45e-6])),
-        Bead(np.array([75e-6, 0, 0])),
-        Bead(np.array([10e-6, 0, 0]))
+        # Bead(np.array([75e-6, 0, 0])),
+        # Bead(np.array([10e-6, 0, 0]))
     ]
 
-    nums = int(1e6)
+    nums = int(10e6)
     rays = np.array([])
     for bead in beads:
         rays = np.append(rays, bead.generate_rays(fiber, nums))
         if DRAW:
             bead.draw(fig1)
 
-    final_positions = fiber.propagate(rays[0], fig1, draw=False)
+    final_positions = fiber.propagate(rays[0], fig1, draw=DRAW)
     for i in range(1, rays.size):
-        final_positions = np.vstack((final_positions, fiber.propagate(rays[i], fig1, draw=False)))
+        final_positions = np.vstack((final_positions, fiber.propagate(rays[i], fig1, draw=DRAW)))
         if ((i - 1) * 100) % rays.size > (i * 100) % rays.size:
             print('progress: ', int((i / rays.size) / 0.01), '%')
     if DRAW:
@@ -48,8 +48,8 @@ if __name__ == '__main__':
     plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
     plt.imshow(heatmap.T, extent=extent, origin='lower')
     # plt.imsave(getcwd() + '/simulated_calibration/' + 'img_test_' + FILENAME + '.tiff', heatmap.T)
-    if DRAW:
-        fig2.show()
+
+    fig2.show()
 
     end = time.time()
 
