@@ -6,7 +6,7 @@ import time
 from simulation.bead import Bead
 from mpl_toolkits.mplot3d import Axes3D
 
-DRAW = False
+DRAW = True
 FILENAME = 'mid'
 BIN_SIZE = 150
 
@@ -27,7 +27,7 @@ if __name__ == '__main__':
         # Bead(np.array([10e-6, 0, 0]))
     ]
 
-    nums = int(10e6)
+    nums = int(1e6)
     rays = np.array([])
     for bead in beads:
         rays = np.append(rays, bead.generate_rays(fiber, nums))

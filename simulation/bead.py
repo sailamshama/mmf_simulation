@@ -21,13 +21,15 @@ class Bead:
         while i <= samples:
             # TODO: test if this is correct
             z = - (((i * offset) - self.radius) + (offset / 2))
-            r = math.sqrt(self.radius ** 2 - pow(z, 2))
+            r = math.sqrt(1 - pow(z, 2))
             theta = ((i + rnd) % samples) * increment  # azimuthal (projection) angle
             psi = math.atan2(r, z)
             if psi >= np.pi() / 2:
                 points = points[:i]
                 break
-            points[i] = np.array([self.position[0] + r * np.cos(theta), self.position[1] + self.position[2] + r * np.sin(theta), z])
+            points[i] = np.array([self.position[0] + r * np.cos(theta),
+                                  self.position[1] + r * np.sin(theta),
+                                  self.position[2] + z])
         return points
 
     # Use fibonacci sphere algorithm optimize uniform distribution of 'samples' number of points on spherical cap
@@ -74,14 +76,14 @@ class Bead:
         point_rays = point_rays[:i]  # discard all initialized rays after break index
         return point_rays
 
-    def generate_rays_on_hemisphere(self, fiber, samples):
-        points = self.points_on_hemisphere(self.position)
-        bead_rays = np.array([])
-        for point in points:
-            point_rays = self.generate_rays(fiber, samples)
-            bead_rays = np.hstack((rays, point_rays))
-
-        return bead_rays
+    # def generate_rays_on_hemisphere(self, fiber, samples):
+    #     points = self.points_on_hemisphere(samples)
+    #     bead_rays = np.array([])
+    #     for point in points:
+    #         point_rays = self.generate_rays(fiber, samples)
+    #         bead_rays = np.hstack((rays, point_rays))
+    #
+    #     return bead_rays
 
     def draw(self, fig):
         pass
