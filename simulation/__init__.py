@@ -21,29 +21,32 @@ if __name__ == '__main__':
         fiber.draw(fig1)
 
     beads = [
-        Bead(np.array([0e-6, 0e-6, 0e-6])),
-        Bead(np.array([0e-6, 10e-6, 0e-6])),
-        Bead(np.array([0e-6, 20e-6, 0e-6])),
-        Bead(np.array([0e-6, 30e-6, 0e-6])),
-        Bead(np.array([0e-6, 40e-6, 0e-6])),
-        Bead(np.array([0, 51e-6, -45e-6])),
+        # Bead(np.array([0e-6, 0e-6, 0e-6])),
+        # Bead(np.array([0e-6, 10e-6, 0e-6])),
+        # Bead(np.array([0e-6, 20e-6, 0e-6])),
+        # Bead(np.array([0e-6, 30e-6, 0e-6])),
+        # Bead(np.array([0e-6, 40e-6, 0e-6])),
+        # Bead(np.array([0, 51e-6, -45e-6])),
         Bead(np.array([0, 51e-6, 0e-6])),
-        Bead(np.array([0e-6, 60e-6, 0e-6])),
-        Bead(np.array([0e-6, 70e-6, 0e-6])),
-        Bead(np.array([0e-6, 80e-6, 0e-6])),
-        Bead(np.array([0e-6, 90e-6, 0e-6])),
-        Bead(np.array([0e-6, 99e-6, 0e-6])),
-        Bead(np.array([10e-6, 0, 0]))
+        # Bead(np.array([0e-6, 60e-6, 0e-6])),
+        # Bead(np.array([0e-6, 70e-6, 0e-6])),
+        # Bead(np.array([0e-6, 80e-6, 0e-6])),
+        # Bead(np.array([0e-6, 90e-6, 0e-6])),
+        # Bead(np.array([0e-6, 99e-6, 0e-6])),
+        # Bead(np.array([10e-6, 0, 0]))
     ]
 
-    nums = int(1e6 )
-    rays = np.array([])
+    # nums = int(3e6)
+    nums = np.array([1e4, 1e5, 1e6, 3e6, 6e6, 8e6, 1e7], dtype='int')
+    # rays = np.array([])
 
     print(time.time() - start)
-    for bead in beads:
+    for num in nums:
         start = time.time()
         rays = np.array([])
-        rays = np.append(rays, bead.generate_rays(fiber, nums))
+        for bead in beads:
+            rays = np.append(rays, bead.generate_rays(fiber, num))
+
         if DRAW:
             bead.draw(fig1)
 
@@ -60,10 +63,11 @@ if __name__ == '__main__':
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.ticklabel_format(style='sci', axis='y', scilimits=(0, 0))
         plt.imshow(heatmap.T, extent=extent, origin='lower')
-        plt.imsave(getcwd() + '/simulated_calibration/' + 'img_y'+ str(bead.position[1]) + '_test_'+ str(nums) + FILENAME + '.tiff', heatmap.T)
-
-        fig2.show()
+        # plt.imsave(getcwd() + '\\simulated_calibration\\' + 'img_y'+ str(bead.position[1]) + '_test_'+ str(nums) + '.tiff', heatmap.T)
+        if DRAW:
+            fig2.show()
 
         end = time.time()
 
-        print("Position:", bead.position[1], "Simulation time: ", end-start)
+        print("Nums:", num, "Simulation time: ", end - start)
+
