@@ -3,6 +3,10 @@ import numpy as np
 
 class Ray:
     # TODO: throw errors for invalid values
+    '''
+        psi = angle w.r.t. z axis
+        theta = angle w.r.t y axis
+    '''
     def __init__(self, start=np.array([0, 0, 0]), theta=0, psi=0):
         self.start = start
         self.theta = theta
